@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -7,49 +11,29 @@
   pointer-events: none;
 }
 
-.red-border {
-  border: 1px solid red;
+.App-logo-min {
+  height: 5vmin;
+  margin: auto 0;
+  pointer-events: none;
 }
 
-.green-border {
-  border: 1px solid green;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: shake infinite 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Card {
+  align-items: flex-start;
+  background: grey;
+  border-radius: 5%;
+  box-shadow: black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex: 0 0 auto;
+  height: 60vh;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 40vw;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+.Card .HeaderCard {
+  flex: 0 1 auto;
+  background: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
