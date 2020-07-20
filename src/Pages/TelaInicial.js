@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import get_input from '../actions/index'
 
 export class TelaInicial extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ export class TelaInicial extends Component {
     const { email, name } = this.state;
     return (
       <div>
+        {console.log(this.props.email)}
         <form>
           <label htmlFor="email"> Email do Gravatar
           <input
@@ -36,6 +39,7 @@ export class TelaInicial extends Component {
             type="submit" id="Jogar"
             disabled={this.verificaçao()}
             data-testid="btn-play"
+            onClick={() => this.props.get(email, name)}
           >
             Jogar
           </button>
@@ -45,4 +49,12 @@ export class TelaInicial extends Component {
   }
 }
 
-export default TelaInicial;
+const mapStateToProps = (state) => (
+  console.log(state)
+);
+
+const mapDispatchToProps = (dispatch) => ({
+  get: (email, name) => dispatch(get_input(email, name)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TelaInicial);
