@@ -4,8 +4,8 @@ export class TelaInicial extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      name: "",
+      email: '',
+      name: '',
     };
     this.verificaçao = this.verificaçao.bind(this);
   }
@@ -24,7 +24,7 @@ export class TelaInicial extends Component {
             id="email"
             data-testid="input-gravatar-email"
             value={email}
-            onChange={(event) => (this.setState({email:event.target.value}))}
+            onChange={(event) => this.setState({ email: event.target.value })}
           />
           <label htmlFor="name">Nome do Jogador</label>
           <input
@@ -32,9 +32,16 @@ export class TelaInicial extends Component {
             id="name"
             data-testid="input-player-name"
             value={name}
-            onChange={(event) => (this.setState({name:event.target.value}))}
+            onChange={(event) => this.setState({ name: event.target.value })}
           />
-          <button type="submit" id='Jogar' disabled={this.verificaçao(email, name)} data-testid="btn-play" >Jogar</button>
+          <button
+            type="submit"
+            id="Jogar"
+            disabled={this.verificaçao(email, name)}
+            data-testid="btn-play"
+          >
+            Jogar
+          </button>
         </form>
       </div>
     );
