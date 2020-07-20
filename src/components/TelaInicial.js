@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export class TelaInicial extends Component {
   constructor(props) {
@@ -7,8 +7,9 @@ export class TelaInicial extends Component {
       email: "",
       name: "",
     };
+    this.verificaçao = this.verificaçao.bind(this);
   }
-  verificaçao = (email, name) => {
+  verificaçao(email, name) {
     if (!email || !name) return true;
     return false;
   }
