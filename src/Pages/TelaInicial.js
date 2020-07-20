@@ -19,20 +19,21 @@ export class TelaInicial extends Component {
       <div>
         <form>
           <label htmlFor="email"> Email do Gravatar
-          <input 
-            type="text" 
+          <input
+            type="text"
             data-testid="input-gravatar-email"
             value={email}
             onChange={(event) => this.setState({ email: event.target.value })}
           /></label>
           <label htmlFor="name">Nome do Jogador
-          <input 
+          <input
             type="text" id="name"
             data-testid="input-player-name"
             value={name}
             onChange={(event) => this.setState({ name: event.target.value })}
           /></label>
-          <button type="submit" id="Jogar"
+          <button
+            type="submit" id="Jogar"
             disabled={this.verificaçao()}
             data-testid="btn-play"
           >
