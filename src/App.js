@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { TelaInicial } from './Pages/TelaInicial';
+import TelaInicial from './Pages/TelaInicial';
 
 function App() {
   return (
