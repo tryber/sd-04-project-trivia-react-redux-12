@@ -25,12 +25,12 @@ export default class Feedback extends Component {
           <p data-testid="feedback-total-question">Hits</p>
         </div>
         <div className="FooterFeedback">
-          <Button data-testid="btn-play-again" variant="contained" color="primary">Jogar Novamente</Button>
+          <Button data-testid="btn-play-again" variant="contained" color="primary">
+            Jogar Novamente
+          </Button>
           <Button data-testid="btn-ranking" variant="contained" color="primary">Ver Ranking</Button>
         </div>
       </div>
     );
   }
 }
-
-// teste
