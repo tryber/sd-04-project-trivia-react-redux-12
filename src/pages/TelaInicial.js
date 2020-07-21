@@ -24,7 +24,7 @@ class TelaInicial extends Component {
     const { email, name } = this.state;
     const { getTest } = this.props;
     return (
-      <div>
+      <div className="Card">
         <form>
           <label htmlFor="email">
             Email do Gravatar
@@ -44,7 +44,7 @@ class TelaInicial extends Component {
             <button
               disabled={this.verificaçao()} data-testid="btn-play"
               onClick={() => getTest(email, name)}
-            >
+              >
               Jogar
             </button>
           </Link>

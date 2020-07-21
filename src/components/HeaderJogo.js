@@ -4,22 +4,22 @@ import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 
 const HeaderJogo = (props) => (
-  <header>
+  <header className="HeaderCard">
     <img
       data-testid="header-profile-picture"
       src={`https://www.gravatar.com/avatar/${md5(props.email).toString()}`}
       alt="img jogador"
     />
-    <h1 data-testid="header-player-name">
+    <span data-testid="header-player-name">
       Jogador:
       {props.name}
-    </h1>
-    <h1 data-testid="header-score">
+    </span>
+    <span data-testid="header-score">
       Pontuação: 0
       {/*
       {props.score}
       */}
-    </h1>
+    </span>
   </header>
 );
 

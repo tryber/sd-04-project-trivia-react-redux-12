@@ -6,6 +6,7 @@ import './App.css';
 import TelaInicial from './pages/TelaInicial';
 import TelaJogo from './pages/TelaJogo';
 import Feedback from './pages/Feedback';
+import Ranking from './pages/Ranking';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/" component={TelaInicial} />
         <Route path="/game" component={TelaJogo} />
         <Route path="/feedback" component={Feedback} />
+        <Route path="/test" component={Ranking} />
       </Switch>
     </BrowserRouter>
   );
