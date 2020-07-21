@@ -14,7 +14,7 @@ const HeaderJogo = (props) => (
       {props.name}
     </h1>
     <h1 data-testid="header-score">
-      Pontuação:
+      Pontuação: 0
       {/*
       {props.score}
       */}
