@@ -44,7 +44,7 @@ class TelaInicial extends Component {
             <button
               disabled={this.verificaçao()} data-testid="btn-play"
               onClick={() => getTest(email, name)}
-              >
+            >
               Jogar
             </button>
           </Link>

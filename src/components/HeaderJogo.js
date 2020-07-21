@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import PropTypes from 'prop-types';
 
 const HeaderJogo = (props) => (
   <header>
@@ -27,5 +28,10 @@ const mapStateToProps = (state) => ({
   name: state.cadastro.name,
 //  score: state.trivia.score,
 });
+
+HeaderJogo.propTypes = {
+  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(HeaderJogo);

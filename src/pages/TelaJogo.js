@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import HeaderJogo from '../components/HeaderJogo'
+import React, { Component } from 'react';
+import HeaderJogo from '../components/HeaderJogo';
 
 class TelaJogo extends Component {
   render() {
@@ -7,8 +7,8 @@ class TelaJogo extends Component {
       <div>
         <HeaderJogo />
       </div>
-    )
+    );
   }
 }
 
-export default TelaJogo
+export default TelaJogo;
