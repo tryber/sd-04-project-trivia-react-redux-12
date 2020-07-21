@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import getInput from '../actions/index';
+// import { connect } from 'react-redux';
+// import getInput from '../actions/index';
 
 export class TelaInicial extends Component {
   constructor(props) {
@@ -19,7 +19,6 @@ export class TelaInicial extends Component {
 
   render() {
     const { email, name } = this.state;
-//    const { getTest } = this.props;
     return (
       <div>
         <form>
@@ -36,17 +35,12 @@ export class TelaInicial extends Component {
             Nome do Jogador
             <input
               type="text"
-              id="name"
               data-testid="input-player-name"
               value={name}
               onChange={(event) => this.setState({ name: event.target.value })}
             />
           </label>
-          <button
-            type="submit"
-            disabled={this.verificaçao()}
-            data-testid="btn-play"
-          >
+          <button disabled={this.verificaçao()} data-testid="btn-play" >
             Jogar
           </button>
         </form>
