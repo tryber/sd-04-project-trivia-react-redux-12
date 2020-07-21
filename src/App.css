@@ -1,55 +1,100 @@
-.App {
+.Container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.Card, .CardFeedback {
+  align-items: center;
+  background: rgb(54, 59, 70);
+  border-radius: 5%;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  height: 590px;
+  justify-content: center;
+  padding: 10px 0;
+  width: 500px;
+}
+
+.Card > ul {
+  height: 180px;
+  width: 300px;
+  overflow-y: scroll;
+  list-style: none;
+  margin: 35px 0;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.HeaderCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100px;
+  padding: 0;
+}
+
+.HeaderCard > h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.HeaderCard > img {
+  height: 80%;
+  margin: 0;
+}
+
+.HeaderFeedback, .BodyFeedback, .FooterFeedback{
+  display: flex;
+  width: 80%;  
+}
+
+.CardFeedback {
+  justify-content: space-evenly;
+}
+
+.HeaderFeedbackInfo {
+  display: flex;
+  flex-direction: column;  
+}
+
+.HeaderFeedBackGroup {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+}
+
+.HeaderFeedbackPic > img{
+  height: 80px;
+  margin-right: 80px;
+}
+
+.HeaderFeedback {
+  /* border: 1px dashed yellow; */
+  flex-direction: column;
+  align-items: center;
+  height: 175px;
+  justify-content: space-between;
+}
+
+.BodyFeedback {
+  flex-direction: column;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.FooterFeedback {
+  justify-content: space-around;
 }
 
-.red-border {
-  border: 1px solid red;
-}
-
-.green-border {
-  border: 1px solid green;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: shake infinite 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+.LogoSmall {
+  width: 230px;
+  height: 80px;
+  
 }

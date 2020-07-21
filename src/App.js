@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-
-import TelaInicial from './Pages/TelaInicial';
+import Feedback from './pages/Feedback';
 
 function App() {
   return (
-    <div>
-      <TelaInicial />
-    </div>
+    <header className="Container">
+      {/* <Ranking /> */}
+      <Feedback />
+    </header>
   );
 }
 
