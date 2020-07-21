@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import cadastro from './cadastro';
 
-const rootReducer = combineReducers ({
+const rootReducer = combineReducers({
   cadastro,
 });
 
