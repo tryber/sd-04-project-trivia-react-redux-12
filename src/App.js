@@ -7,6 +7,7 @@ import TelaInicial from './pages/TelaInicial';
 import TelaJogo from './pages/TelaJogo';
 import Feedback from './pages/Feedback';
 
+
 function App() {
   return (
     <BrowserRouter>
