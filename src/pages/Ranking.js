@@ -5,7 +5,7 @@ import logo from '../trivia.png';
 export default class Ranking extends Component {
   testeRender = () => {
     alert('wat');
-  }
+  };
 
   render() {
     return (
@@ -30,14 +30,16 @@ export default class Ranking extends Component {
           <li>FULANO</li>
           <li>Ciclano</li>
           <li>FULANO</li>
-          <li>Ciclano</li>
-          <li>FULANO</li>
-          <li>Ciclano</li>
-          <li>FULANO</li>
-          <li>Ciclano</li>
-          <li>FULANO</li>
         </ul>
-        <Button variant="contained" onClick={this.testeRender} color="primary">Voltar</Button>
+        <Button
+          type="button"
+          data-testid=\"btn-go-home"
+          variant="contained"
+          onClick={this.testeRender}
+          color="secondary"
+        >
+          Voltar
+        </Button>
       </div>
     );
   }

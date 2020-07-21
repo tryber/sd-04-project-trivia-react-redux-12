@@ -1,21 +1,20 @@
-.Container {
-  align-items: center;
+.Container , .Card , .HeaderCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.Container {
   min-height: 100vh;
 }
 
 .Card {
-  align-items: center;
-  background: rgb(54, 59, 70);
+  background: rgb(118, 130, 155);
   border-radius: 5%;
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
   flex: 0 0 auto;
   height: 500px;
-  justify-content: center;
   width: 500px;
 }
 
@@ -31,16 +30,14 @@
 }
 
 .HeaderCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0;
   height: 100px;
   padding: 0;
 }
 
 .HeaderCard > h1 {
+  font-family: Bungee Inline, cursive;
+  color: black;
   margin: 0;
   padding: 0;
 }
