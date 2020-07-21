@@ -33,7 +33,7 @@ export default class Ranking extends Component {
         </ul>
         <Button
           type="button"
-          data-testid=\"btn-go-home"
+          data-testid="btn-go-home"
           variant="contained"
           onClick={this.testeRender}
           color="secondary"
