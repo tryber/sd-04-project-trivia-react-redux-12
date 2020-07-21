@@ -11,17 +11,33 @@ export default class Ranking extends Component {
     return (
       <div className="Card">
         <div className="HeaderCard">
+          <img src={logo} alt="logo" />
           <h1>RANKING</h1>
-          <img src={logo} className="App-logo-min" alt="logo" />
         </div>
-        <ul className="teste">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
+        <ul>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
+          <li>Ciclano</li>
+          <li>FULANO</li>
         </ul>
-        <Button variant="contained" className="teste" onClick={this.testeRender} color="primary">Hello World</Button>
+        <Button variant="contained" onClick={this.testeRender} color="primary">Voltar</Button>
       </div>
     );
   }

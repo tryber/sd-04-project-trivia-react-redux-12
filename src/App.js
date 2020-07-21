@@ -4,7 +4,7 @@ import Ranking from './pages/Ranking';
 
 export default function App() {
   return (
-    <header className="App">
+    <header className="Container">
       <Ranking />
     </header>
 
