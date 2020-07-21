@@ -23,14 +23,6 @@ export default class Ranking extends Component {
             <span data-testid="player-name-1">Ciclano: </span>
             <span data-testid="player-score-1">100</span>
           </li>
-          <li>
-            <span data-testid="player-name-2">Ciclano: </span>
-            <span data-testid="player-score-2">100</span>
-          </li>
-          <li>
-            <span data-testid="player-name-2">Ciclano: </span>
-            <span data-testid="player-score-2">100</span>
-          </li>
         </ul>
         <Button
           type="button"
