@@ -19,7 +19,7 @@ export class TelaInicial extends Component {
 
   render() {
     const { email, name } = this.state;
-    const { getTest } = this.props;
+//    const { getTest } = this.props;
     return (
       <div>
         <form>
@@ -42,11 +42,10 @@ export class TelaInicial extends Component {
               onChange={(event) => this.setState({ name: event.target.value })}
             />
           </label>
-          <button 
+          <button
             type="submit"
             disabled={this.verificaçao()}
             data-testid="btn-play"
-            onClick={() => getTest(email, name)}
           >
             Jogar
           </button>
@@ -56,8 +55,10 @@ export class TelaInicial extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getTest: (email, name) => dispatch(getInput(email, name)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//  getTest: (email, name) => dispatch(getInput(email, name)),
+// });
 
-export default connect(null, mapDispatchToProps)(TelaInicial);
+// export default connect(null, mapDispatchToProps)(TelaInicial);
+
+export default TelaInicial; // temporario pra arrumar o CC
