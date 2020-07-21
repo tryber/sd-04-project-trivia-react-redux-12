@@ -19,7 +19,6 @@ export class TelaInicial extends Component {
 
   render() {
     const { email, name } = this.state;
-    const { get } = this.props;
     return (
       <div>
         <form>
@@ -42,13 +41,7 @@ export class TelaInicial extends Component {
               onChange={(event) => this.setState({ name: event.target.value })}
             />
           </label>
-          <button
-            type="submit"
-            id="Jogar"
-            disabled={this.verificaçao()}
-            data-testid="btn-play"
-            onClick={() => get(email, name)}
-          >
+          <button type="submit" id="Jogar" disabled={this.verificaçao()} data-testid="btn-play" onClick={() => this.props.get(email, name)}>
             Jogar
           </button>
         </form>
