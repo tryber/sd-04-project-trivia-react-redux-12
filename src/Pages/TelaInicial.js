@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import getInput from '../actions/index';
 
 class TelaInicial extends Component {
@@ -20,6 +21,7 @@ class TelaInicial extends Component {
 
   render() {
     const { email, name } = this.state;
+    const { getTest } = this.props;
     return (
       <div>
         <form>
@@ -39,7 +41,8 @@ class TelaInicial extends Component {
           </label>
           <button
             disabled={this.verificaçao()} data-testid="btn-play"
-            onClick={() => this.props.getTest(email, name)}>
+            onClick={() => getTest(email, name)}
+          >
             Jogar
           </button>
         </form>
@@ -49,7 +52,11 @@ class TelaInicial extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
- getTest: (email, name) => dispatch(getInput(email, name)),
+  getTest: (email, name) => dispatch(getInput(email, name)),
 });
+
+TelaInicial.propTypes = {
+  getTest: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(TelaInicial);
