@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getInput from '../actions/index';
@@ -41,12 +42,12 @@ class TelaInicial extends Component {
             />
           </label>
           <Link to="/game">
-            <button
+            <Button
               disabled={this.verificaçao()} data-testid="btn-play"
               onClick={() => getTest(email, name)}
             >
               Jogar
-            </button>
+            </Button>
           </Link>
         </form>
       </div>
