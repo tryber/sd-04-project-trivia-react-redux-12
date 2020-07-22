@@ -10,10 +10,9 @@ const HeaderJogo = (props) => (
       src={`https://www.gravatar.com/avatar/${md5(props.email).toString()}`}
       alt="img jogador"
     />
-    <span data-testid="header-player-name">
-      Jogador:
-      {props.name}
-    </span>
+    <p data-testid="header-player-name">
+      Jogador: {props.name}
+    </p>
     <span data-testid="header-score">
       Pontuação: 0
       {/*

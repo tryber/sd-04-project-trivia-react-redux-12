@@ -97,3 +97,11 @@
   width: 230px;
   height: 80px;
 }
+
+.teste {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.teste2 {
+  color: red;
+}
