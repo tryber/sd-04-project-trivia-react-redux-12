@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import questions from '../mock_data/questions';
 
-// esse codigo não fede nem cheira, não quis apagar então só arrumei pra passar no CC
-
 class Perguntas extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +20,7 @@ class Perguntas extends Component {
     Mudar para VERMELHO,${event.target.innerHTML} `);
   };
 
-  handleClick2 = (numero) => {
-    return this.setState({ numero: numero + 1 });
-  };
+  handleClick2 = (numero) => this.setState({ numero: numero + 1 });
 
   render() {
     const { numero } = this.state;
@@ -39,7 +35,7 @@ class Perguntas extends Component {
           {arrayResposts.map((element, index) => (
             element === questions.results[numero].correct_answer ? (
               <Button
-                key={element} data-testid={`correct-answer`} color='inherit'
+                key={element} data-testid={'correct-answer'} color="inherit"
                 classes={{ label: 'teste2' }} onClick={(event) => this.handleClick1(event, 'correct')}
               >
                 {element}
