@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/" component={TelaInicial} />
         <Route path="/game" component={TelaJogo} />
         <Route path="/feedback" component={Feedback} />
-        <Route path="/test" component={Ranking} />
+        <Route path="/ranking" component={Ranking} />
       </Switch>
     </BrowserRouter>
   );

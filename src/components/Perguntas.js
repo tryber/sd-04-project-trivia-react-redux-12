@@ -11,14 +11,17 @@ class Perguntas extends Component {
       numero: 0,
     };
   }
+
   handleClick1 = (event, numero) => {
-    if(numero === 'correct') {
+    if (numero === 'correct') {
       return alert(` Resposta correta.
-        Mudar para VERDE,${event.target.innerHTML} `)
+        Mudar para VERDE,${event.target.innerHTML} `);
     }
-    else {return alert (` Resposta errada.
-    Mudar para VERMELHO,${event.target.innerHTML} `) }
+
+    return alert(` Resposta errada.
+    Mudar para VERMELHO,${event.target.innerHTML} `);
   };
+
   handleClick2 = (numero) => {
     return this.setState({ numero: numero + 1 });
   };
@@ -33,38 +36,34 @@ class Perguntas extends Component {
         <div>
           <p data-testid="question-category">{questions.results[numero].category}</p>
           <p data-testid="question-text">{questions.results[numero].question}</p>
-          {arrayResposts.map((element, index) =>
+          {arrayResposts.map((element, index) => (
             element === questions.results[numero].correct_answer ? (
               <Button
                 key={element} data-testid={`correct-answer`} color='inherit'
-                classes={{ label: 'teste2'}}
-                onClick={(event) => this.handleClick1(event, 'correct')}
+                classes={{ label: 'teste2' }} onClick={(event) => this.handleClick1(event, 'correct')}
               >
                 {element}
               </Button>
             ) : (
               <Button
-                key={element} data-testid={`wrong-answer-${index}`}
-                classes={{ label : 'teste2'}}
+                key={element}
+                data-testid={`wrong-answer-${index}`}
+                classes={{ label: 'teste2' }}
                 onClick={(event) => this.handleClick1(event, 'false')}
               >
                 {element}
               </Button>
-            )
-          )}
-          <Button
-            onClick={() => this.handleClick2(numero)} data-testid="btn-next"
-          >
+            )))}
+          <Button onClick={() => this.handleClick2(numero)} data-testid="btn-next">
             confirmar
           </Button>
         </div>
       );
-    } else
-      return (
-        <div>
-          <p>fim</p>
-        </div>
-      );
+    } return (
+      <div>
+        <p>fim</p>
+      </div>
+    );
   }
 }
 
