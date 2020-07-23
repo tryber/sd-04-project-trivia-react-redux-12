@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 import questions from '../mock_data/questions';
 
 class Perguntas extends Component {
