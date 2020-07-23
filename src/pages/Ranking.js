@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import logo from '../trivia.png';
 
 export default class Ranking extends Component {
-  testeRender = () => {
-    alert('wat');
-  };
-
   render() {
     return (
       <div className="Card">
@@ -24,15 +21,16 @@ export default class Ranking extends Component {
             <span data-testid="player-score-1">100</span>
           </li>
         </ul>
-        <Button
-          type="button"
-          data-testid="btn-go-home"
-          variant="contained"
-          onClick={this.testeRender}
-          color="secondary"
-        >
-          Voltar
-        </Button>
+        <Link to="/">
+          <Button
+            type="button"
+            data-testid="btn-go-home"
+            variant="contained"
+            color="secondary"
+          >
+            Voltar
+          </Button>
+        </Link>
       </div>
     );
   }
