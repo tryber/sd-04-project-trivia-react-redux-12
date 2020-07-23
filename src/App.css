@@ -98,10 +98,26 @@
   height: 80px;
 }
 
+
+.teste3 {
+  background-color: #f5f5f5; /* Green */
+  color: black;
+  text-align: center;
+  display: inline-block;
+  border: 3px solid rgb(255, 0, 0);
+}
+
 .teste {
+  background-color: #f5f5f5; /* Green */
+  color: black;
+  text-align: center;
+  display: inline-block;
   border: 3px solid rgb(6, 240, 15);
 }
 
 .teste2 {
-  color: red;
+  background-color: #f5f5f5; /* Green */
+  color: black;
+  text-align: center;
+  display: inline-block;
 }
