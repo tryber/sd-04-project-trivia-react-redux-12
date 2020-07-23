@@ -32,27 +32,6 @@ class Perguntas extends Component {
         <div>
           <p data-testid="question-category">{questions.results[numero].category}</p>
           <p data-testid="question-text">{questions.results[numero].question}</p>
-          {arrayResposts.map((element, index) => (
-            element === questions.results[numero].correct_answer ? (
-              <Button
-                key={element} data-testid={'correct-answer'} color="inherit"
-                classes={{ label: 'teste2' }} onClick={(event) => this.handleClick1(event, 'correct')}
-              >
-                {element}
-              </Button>
-            ) : (
-              <Button
-                key={element}
-                data-testid={`wrong-answer-${index}`}
-                classes={{ label: 'teste2' }}
-                onClick={(event) => this.handleClick1(event, 'false')}
-              >
-                {element}
-              </Button>
-            )))}
-          <Button onClick={() => this.handleClick2(numero)} data-testid="btn-next">
-            confirmar
-          </Button>
         </div>
       );
     } return (
