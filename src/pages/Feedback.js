@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
-import bat from '../bat.png';
-import logo from '../trivia.png';
+import { Link } from 'react-router-dom';
+import HeaderJogo from '../components/HeaderJogo';
 
 export default class Feedback extends Component {
   render() {
     return (
       <div className="CardFeedback">
-        <div className="HeaderFeedback">
-          <img className="LogoSmall" src={logo} alt="logo" />
-          <div className="HeaderFeedBackGroup">
-            <div className="HeaderFeedbackPic">
-              <img data-testid="header-profile-picture" src={bat} alt="gravatar" />
-            </div>
-            <div className="HeaderFeebackInfo">
-              <p data-testid="header-player-name">Fullano de Tall</p>
-              <p data-testid="header-score">Current score</p>
-            </div>
-          </div>
-        </div>
+        <HeaderJogo />
         <div className="BodyFeedback">
           <p data-testid="feedback-text">Mensagem de feedback</p>
-          <p data-testid="feedback-total-score">Full Score</p>
+          <p data-testid="feedback-total-score">Full Score: 0</p>
           <p data-testid="feedback-total-question">Hits</p>
         </div>
         <div className="FooterFeedback">
-          <Button data-testid="btn-play-again" variant="contained" color="primary">
-            Jogar Novamente
-          </Button>
-          <Button data-testid="btn-ranking" variant="contained" color="primary">Ver Ranking</Button>
+          <Link to="/">
+            <Button data-testid="btn-play-again" variant="contained" color="primary">
+              Jogar Novamente
+            </Button>
+          </Link>
+          <Link to="ranking">
+            <Button data-testid="btn-ranking" variant="contained" color="primary">Ver Ranking</Button>
+          </Link>
         </div>
       </div>
     );
