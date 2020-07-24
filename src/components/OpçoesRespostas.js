@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import questions from "../mock_data/questions";
+import React, { Component } from 'react';
+import questions from '../mock_data/questions';
 
 class OpçoesRespostas extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class OpçoesRespostas extends Component {
         {arrayResposts.map((element, index) =>
           element === objQuestions.correct_answer ? (
             <button
-              key={element} data-testid={"correct-answer"}
+              key={element} data-testid={'correct-answer'}
               className={correct} onClick={() => this.handleClick()}
             >
               {element}
@@ -52,7 +52,7 @@ class OpçoesRespostas extends Component {
             >
               {element}
             </button>
-          )
+          ),
         )}
       </div>
     );
