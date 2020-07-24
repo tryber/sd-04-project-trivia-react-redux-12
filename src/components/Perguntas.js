@@ -8,7 +8,7 @@ class Perguntas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contador: 0
+      contador: 0,
     };
   }
 
@@ -17,20 +17,25 @@ class Perguntas extends Component {
   render() {
     const { contador } = this.state;
     const objQuestions = questions.results[contador];
-      return (
-        <div>
-          <p data-testid="question-category">{objQuestions.category}</p>
-          <p data-testid="question-text">{objQuestions.question}</p>
-          <OpçoesRespostas contador={contador} />
-          { contador === questions.results.length - 1 ? (
-          <Link to="/feedback" data-testid="btn-next">feedback</Link>
+    return (
+      <div>
+        <p data-testid="question-category">{objQuestions.category}</p>
+        <p data-testid="question-text">{objQuestions.question}</p>
+        <OpçoesRespostas contador={contador} />
+        {contador === questions.results.length - 1 ? (
+          <Link to="/feedback" data-testid="btn-next">
+            feedback
+          </Link>
         ) : (
-          <Button onClick={() => this.handleClick2(contador)} data-testid="btn-next">
-              confirmar
+          <Button
+            onClick={() => this.handleClick2(contador)}
+            data-testid="btn-next"
+          >
+            confirmar
           </Button>
         )}
-        </div>
-      );
+      </div>
+    );
   }
 }
 
