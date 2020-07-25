@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+=======
+>>>>>>> 6119a58a8760941050952c3eaeae10f83ec4609d
 import questions from '../mock_data/questions';
 
 class Perguntas extends Component {
