@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import questions from '../mock_data/questions';
-import OpçoesRespostas from './OpçoesRespostas';
+import OpcoesRespostas from './OpcoesRespostas';
 
 class Perguntas extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Perguntas extends Component {
     };
   }
 
-  handleClick2 = (contador) => this.setState({ contador: contador + 1 });
+  handleClick = (contador) => this.setState({ contador: contador + 1 });
 
   render() {
     const { contador } = this.state;
@@ -21,14 +21,14 @@ class Perguntas extends Component {
       <div>
         <p data-testid="question-category">{objQuestions.category}</p>
         <p data-testid="question-text">{objQuestions.question}</p>
-        <OpçoesRespostas contador={contador} />
+        <OpcoesRespostas contador={contador} />
         {contador === questions.results.length - 1 ? (
           <Link to="/feedback" data-testid="btn-next">
             feedback
           </Link>
         ) : (
           <Button
-            onClick={() => this.handleClick2(contador)}
+            onClick={() => this.handleClick(contador)}
             data-testid="btn-next"
           >
             confirmar

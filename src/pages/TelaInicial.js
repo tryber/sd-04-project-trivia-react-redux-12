@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import getInput from '../actions/index';
+import { getInput } from '../actions/index';
 
 class TelaInicial extends Component {
   constructor(props) {

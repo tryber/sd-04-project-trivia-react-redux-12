@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import questions from '../mock_data/questions';
+import PropTypes from 'prop-types';
+import  { answers } from '../actions/index';
 
-class OpçoesRespostas extends Component {
+class OpcoesRespostas extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      correct: '',
-      wrong: '',
-      random: 'false',
-    };
     this.shuffle = this.shuffle.bind(this);
   }
-
-  handleClick = () =>
-    this.setState({ correct: 'Correct', wrong: 'Wrong', random: 'true' });
 
   shuffle = (array) => {
     let m = array.length;
@@ -28,27 +23,27 @@ class OpçoesRespostas extends Component {
   };
 
   render() {
-    const { contador } = this.props;
-    const { correct, wrong, random } = this.state;
+    const { contador, correct, wrong, random } = this.props;
     const objQuestions = questions.results[contador];
     const arrayResposts = [];
     arrayResposts.push(...objQuestions.incorrect_answers);
     arrayResposts.push(objQuestions.correct_answer);
-    /* if( random === false)*/ this.shuffle(arrayResposts);
+    
+    if(random === 'false' ) this.shuffle(arrayResposts);
     return (
       <div>
         {arrayResposts.map((element, index) =>
           element === objQuestions.correct_answer ? (
             <button
               key={element} data-testid={'correct-answer'}
-              className={correct} onClick={() => this.handleClick()}
+              className={correct} onClick={() => this.props.getAnswers('correct', 'wrong', 'true')}
             >
               {element}
             </button>
           ) : (
             <button
               key={element} data-testid={`wrong-answer-${index}`}
-              className={wrong} onClick={() => this.handleClick()}
+              className={wrong} onClick={() => this.props.getAnswers('correct', 'wrong', 'true')}
             >
               {element}
             </button>
@@ -59,4 +54,18 @@ class OpçoesRespostas extends Component {
   }
 }
 
-export default OpçoesRespostas;
+const mapStateToProps = (state) => ({
+  correct: state.answers.correct,
+  wrong: state.answers.wrong,
+  random: state.answers.random,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAnswers: (correct, wrong, random) => dispatch(answers(correct, wrong, random)),
+});
+
+OpcoesRespostas.propTypes = {
+  getAnswers: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OpcoesRespostas);
