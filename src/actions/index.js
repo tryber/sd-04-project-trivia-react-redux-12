@@ -1,9 +1,16 @@
 export const INPUT_CHANGE = 'INPUT_CHANGE';
+export const ANSWERS = 'ANSWERS';
 
-const getInput = (email, name) => ({
+ export const getInput = (email, name) => ({
   type: INPUT_CHANGE,
   email,
   name,
 });
 
-export default getInput;
+export const answers = (correct, wrong, random) => ({
+  type: ANSWERS,
+  correct,
+  wrong,
+  random,
+})
+

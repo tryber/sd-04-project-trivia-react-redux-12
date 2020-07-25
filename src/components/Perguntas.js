@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
+
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import questions from '../mock_data/questions';
+import OpcoesRespostas from './OpcoesRespostas';
 
 class Perguntas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numero: 0,
+      contador: 0,
     };
   }
 
-  handleClick1 = (event, numero) => {
-    if (numero === 'correct') {
-      return alert(` Resposta correta.
-        Mudar para VERDE,${event.target.innerHTML} `);
-    }
-
-    return alert(` Resposta errada.
-    Mudar para VERMELHO,${event.target.innerHTML} `);
-  };
-
-  handleClick2 = (numero) => this.setState({ numero: numero + 1 });
+  handleClick = (contador) => this.setState({ contador: contador + 1 });
 
   render() {
-    const { numero } = this.state;
-    if (questions.results.length - 1 >= numero) {
-      const arrayResposts = questions.results[numero].incorrect_answers;
-      arrayResposts.push(questions.results[numero].correct_answer);
-      arrayResposts.sort();
-      return (
-        <div>
-          <p data-testid="question-category">{questions.results[numero].category}</p>
-          <p data-testid="question-text">{questions.results[numero].question}</p>
-        </div>
-      );
-    } return (
+    const { contador } = this.state;
+    const objQuestions = questions.results[contador];
+    return (
       <div>
-        <p>fim</p>
+        <p data-testid="question-category">{objQuestions.category}</p>
+        <p data-testid="question-text">{objQuestions.question}</p>
+        <OpcoesRespostas contador={contador} />
+        {contador === questions.results.length - 1 ? (
+          <Link to="/feedback" data-testid="btn-next">
+            feedback
+          </Link>
+        ) : (
+          <Button
+            onClick={() => this.handleClick(contador)}
+            data-testid="btn-next"
+          >
+            confirmar
+          </Button>
+        )}
       </div>
     );
   }
