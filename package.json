@@ -8,12 +8,15 @@
     "@testing-library/user-event": "^7.1.2",
     "crypto-js": "^4.0.0",
     "knuth-shuffle": "^1.0.8",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -49,9 +52,7 @@
     "mocha": "^7.2.0",
     "mochawesome": "^6.1.1",
     "mochawesome-merge": "^4.1.0",
-    "mochawesome-report-generator": "^5.1.0",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6"
+    "mochawesome-report-generator": "^5.1.0"
   },
   "jest": {
     "coveragePathIgnorePatterns": [

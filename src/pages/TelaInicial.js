@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getInput } from '../actions/index';
+import { setInput, getToken } from '../actions';
 
 class TelaInicial extends Component {
   constructor(props) {
@@ -12,36 +12,49 @@ class TelaInicial extends Component {
       email: '',
       name: '',
     };
-    this.verificaçao = this.verificaçao.bind(this);
-    this.props = props;
   }
 
-  verificaçao() {
-    if (!this.state.email || !this.state.name) return true;
+  requestToken = () => {
+    const { getToken } = this.props;
+    getToken();
+  }
+
+  verificacao = () => {
+    const { email, name } = this.state;
+    if (!email || !name) return true;
     return false;
   }
 
   render() {
     const { email, name } = this.state;
-    const { getTest } = this.props;
+    const { setInput } = this.props;
     return (
       <div className="Card">
         <form autoComplete="off">
           <TextField
             onChange={(event) => this.setState({ email: event.target.value })}
             data-testid="input-gravatar-email"
-            label="Email do Gravata" id="Email"
-            value={email} variant="outlined" size="small"
+            label="Email do Gravata"
+            id="Email"
+            value={email}
+            variant="outlined"
+            size="small"
           />
           <TextField
-            id="Name" label="Nome do Jogador" variant="outlined" size="small"
+            id="Name"
+            label="Nome do Jogador"
+            variant="outlined"
+            size="small"
             data-testid="input-player-name"
-            value={name} onChange={(event) => this.setState({ name: event.target.value })}
+            value={name}
+            onChange={(event) => this.setState({ name: event.target.value })}
           />
           <Link to="/game">
             <button
-              disabled={this.verificaçao()} data-testid="btn-play"
-              onClick={() => getTest(email, name)}
+              type="button"
+              disabled={this.verificacao()}
+              data-testid="btn-play"
+              onClick={() => { setInput(email, name); this.requestToken(); }}
             >
               Jogar
             </button>
@@ -52,12 +65,9 @@ class TelaInicial extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getTest: (email, name) => dispatch(getInput(email, name)),
-});
-
 TelaInicial.propTypes = {
-  getTest: PropTypes.func.isRequired,
+  setInput: PropTypes.func.isRequired,
+  getToken: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(TelaInicial);
+export default connect(null, { setInput, getToken })(TelaInicial);

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderJogo from '../components/HeaderJogo';
 

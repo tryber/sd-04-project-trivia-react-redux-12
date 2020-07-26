@@ -3,11 +3,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
 // import * as pages from './pages';
-import TelaInicial from './pages/TelaInicial';
-import TelaJogo from './pages/TelaJogo';
-import Feedback from './pages/Feedback';
-import Ranking from './pages/Ranking';
-
+import TelaInicial from './Pages/TelaInicial';
+import TelaJogo from './Pages/TelaJogo';
+import Feedback from './Pages/Feedback';
+import Ranking from './Pages/Ranking';
 
 function App() {
   return (
