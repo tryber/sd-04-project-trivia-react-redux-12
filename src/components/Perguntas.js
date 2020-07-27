@@ -14,7 +14,10 @@ export class Perguntas extends Component {
     };
   }
 
-  handleClick = (contador) => this.setState({ contador: contador + 1 });
+  handleClick = (contador) => {
+    this.setState({contador: contador + 1});
+  }
+    
 
   render() {
     const {
