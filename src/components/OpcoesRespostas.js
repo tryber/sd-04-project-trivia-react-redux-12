@@ -17,9 +17,36 @@ class OpcoesRespostas extends Component {
     }
   };
 
+  mapAnswers = (arrayAnswers, objQuestions) => {
+    const {
+      correct, wrong, getAnswers,
+    } = this.props;
+    arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
+      <button
+        type="button"
+        key={element}
+        data-testid="correct-answer"
+        className={correct}
+        onClick={() => getAnswers('correct', 'wrong', 'true')}
+      >
+        {element}
+      </button>
+    ) : (
+      <button
+        type="button"
+        key={element}
+        data-testid={`wrong-answer-${index}`}
+        className={wrong}
+        onClick={() => getAnswers('correct', 'wrong', 'true')}
+      >
+        {element}
+      </button>
+    )));
+  }
+
   render() {
     const {
-      contador, correct, wrong, random, getAnswers,
+      contador, random,
     } = this.props;
     const objQuestions = questions.results[contador];
     const arrayAnswers = [];
@@ -29,27 +56,7 @@ class OpcoesRespostas extends Component {
     if (random === 'false') this.shuffle(arrayAnswers);
     return (
       <div>
-        {arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
-          <button
-            type="button"
-            key={element}
-            data-testid="correct-answer"
-            className={correct}
-            onClick={() => getAnswers('correct', 'wrong', 'true')}
-          >
-            {element}
-          </button>
-        ) : (
-          <button
-            type="button"
-            key={element}
-            data-testid={`wrong-answer-${index}`}
-            className={wrong}
-            onClick={() => getAnswers('correct', 'wrong', 'true')}
-          >
-            {element}
-          </button>
-        )))}
+        {this.mapAnswers(arrayAnswers, objQuestions)}
       </div>
     );
   }

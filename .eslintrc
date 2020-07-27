@@ -15,7 +15,8 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "react/require-default-props": "off"
   },
   "parser": "babel-eslint",
   "env": {

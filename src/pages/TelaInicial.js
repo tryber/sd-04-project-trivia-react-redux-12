@@ -15,12 +15,6 @@ class TelaInicial extends Component {
     };
   }
 
-  checkDisable = () => {
-    const { email, name } = this.state;
-    if (!email || !name) return true;
-    return false;
-  };
-
   setLocalState = () => {
     const { setPlayer } = this.props;
     const { email, name } = this.state;
@@ -52,6 +46,12 @@ class TelaInicial extends Component {
       .then(() => history.push('/game'));
   };
 
+  checkDisable = () => {
+    const { email, name } = this.state;
+    if (!email || !name) return true;
+    return false;
+  };
+
   render() {
     const { email, name } = this.state;
     return (
@@ -60,16 +60,12 @@ class TelaInicial extends Component {
           <TextField
             onChange={(event) => this.setState({ email: event.target.value })}
             data-testid="input-gravatar-email"
-            label="Email do Gravatar"
-            id="Email"
             value={email}
             variant="outlined"
             size="small"
           />
           <TextField
-            id="Name"
             label="Nome do Jogador"
-            variant="outlined"
             size="small"
             data-testid="input-player-name"
             value={name}
