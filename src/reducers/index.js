@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import cadastro from './cadastro';
-import answers from './answers'
+import players from './players';
+import answers from './answers';
+import questions from './questions';
 
 const rootReducer = combineReducers({
-  cadastro,
+  players,
   answers,
+  questions,
 });
 
 export default rootReducer;

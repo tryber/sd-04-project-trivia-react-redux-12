@@ -1,25 +1,27 @@
 import {
-  ANSWERS,
-} from '../actions/index';
+  GET_ANSWERS,
+} from '../actions';
 
 const INITIALL_STATE = {
-  correct:'',
-  wrong:'',
-  random:'false',
+  correct: '',
+  wrong: '',
+  random: 'false',
 };
 
-const answers = (state = INITIALL_STATE, action) => {
-  switch(action.type) {
-    case ANSWERS:
+const answers = (state = INITIALL_STATE, {
+  type, correct, wrong, random,
+}) => {
+  switch (type) {
+    case GET_ANSWERS:
       return {
         ...state,
-        correct: action.correct,
-        wrong: action.wrong,
-        random: action.random,
-      }
+        correct,
+        wrong,
+        random,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default answers;

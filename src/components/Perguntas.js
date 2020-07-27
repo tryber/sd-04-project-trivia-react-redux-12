@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import questions from '../mock_data/questions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import OpcoesRespostas from './OpcoesRespostas';
 
-class Perguntas extends Component {
+export class Perguntas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,31 +14,54 @@ class Perguntas extends Component {
     };
   }
 
-  handleClick = (contador) => this.setState({ contador: contador + 1 });
+  handleClick = (contador) => {
+    this.setState({contador: contador + 1});
+  }
 
   render() {
+    const {
+      loading, questions, error,
+    } = this.props;
     const { contador } = this.state;
-    const objQuestions = questions.results[contador];
-    return (
-      <div>
-        <p data-testid="question-category">{objQuestions.category}</p>
-        <p data-testid="question-text">{objQuestions.question}</p>
-        <OpcoesRespostas contador={contador} />
-        {contador === questions.results.length - 1 ? (
-          <Link to="/feedback" data-testid="btn-next">
-            feedback
-          </Link>
-        ) : (
-          <Button
-            onClick={() => this.handleClick(contador)}
-            data-testid="btn-next"
-          >
-            confirmar
-          </Button>
-        )}
-      </div>
-    );
+    if (questions) {
+      const objQuestions = questions[contador];
+      return (
+        <div>
+          <p data-testid="question-category">{objQuestions.category}</p>
+          <p data-testid="question-text">{objQuestions.question}</p>
+          <OpcoesRespostas contador={contador} />
+          {contador === questions.length - 1 ? (
+            <Link to="/feedback" data-testid="btn-next">
+              feedback
+            </Link>
+          ) : (
+            <Button
+              onClick={() => this.handleClick(contador)}
+              data-testid="btn-next"
+            >
+              confirmar
+            </Button>
+          )}
+        </div>
+      );
+    }
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    return <div>{error}</div>;
   }
 }
 
-export default Perguntas;
+Perguntas.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.shape,
+  questions: PropTypes.shape,
+};
+
+const mapStateToProps = (state) => ({
+  questions: state.questions.data.results,
+  loading: state.questions.loading,
+  error: state.questions.error,
+});
+
+export default connect(mapStateToProps)(Perguntas);
