@@ -14,8 +14,6 @@ export class Perguntas extends Component {
     };
   }
 
-  handleClick = (contador) => this.setState({ contador: contador + 1 });
-
   render() {
     const {
       loading, questions, error,
@@ -30,14 +28,14 @@ export class Perguntas extends Component {
           <OpcoesRespostas contador={contador} />
           {contador === questions.length - 1 ? (
             <Link to="/feedback" data-testid="btn-next">
-              feedback
+              Feedback
             </Link>
           ) : (
             <Button
-              onClick={() => this.handleClick(contador)}
+              onClick={() => { toggleAnswers(); getNextQuestion(); }}
               data-testid="btn-next"
             >
-              confirmar
+              Confirmar
             </Button>
           )}
         </div>
@@ -62,4 +60,4 @@ const mapStateToProps = (state) => ({
   error: state.questions.error,
 });
 
-export default connect(mapStateToProps)(Perguntas);
+export default connect(mapStateToProps, { toggleAnswers, getNextQuestion })(Perguntas);

@@ -16,6 +16,27 @@ export class TelaInicial extends Component {
     };
   }
 
+  returnInputs = (email, name) => (
+    <>
+      <TextField
+        data-testid="input-gravatar-email"
+        label="Email do Jogador"
+        onChange={(event) => this.setState({ email: event.target.value })}
+        size="small"
+        value={email}
+        variant="outlined"
+      />
+      <TextField
+        data-testid="input-player-name"
+        label="Nome do Jogador"
+        onChange={(event) => this.setState({ name: event.target.value })}
+        size="small"
+        value={name}
+        variant="outlined"
+      />
+    </>
+  )
+
   setLocalState = () => {
     const { setPlayer } = this.props;
     const { email, name } = this.state;
@@ -58,22 +79,7 @@ export class TelaInicial extends Component {
     return (
       <div className="Card">
         <form autoComplete="off">
-          <TextField
-            data-testid="input-gravatar-email"
-            label="Email do Jogador"
-            onChange={(event) => this.setState({ email: event.target.value })}
-            size="small"
-            value={email}
-            variant="outlined"
-          />
-          <TextField
-            data-testid="input-player-name"
-            label="Nome do Jogador"
-            onChange={(event) => this.setState({ name: event.target.value })}
-            size="small"
-            value={name}
-            variant="outlined"
-          />
+          {this.returnInputs(email, name)}
           <br />
           <Button
             variant="contained"

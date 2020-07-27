@@ -1,23 +1,24 @@
 import {
-  GET_ANSWERS,
+  GET_NEXT_QUESTION,
+  TOOGLE_ANSWERS,
 } from '../actions';
 
 const INITIALL_STATE = {
-  correct: '',
-  wrong: '',
-  random: 'false',
+  answerState: false,
+  counter: 0,
 };
 
-const answers = (state = INITIALL_STATE, {
-  type, correct, wrong, random,
-}) => {
+const answers = (state = INITIALL_STATE, { type }) => {
   switch (type) {
-    case GET_ANSWERS:
+    case TOOGLE_ANSWERS:
       return {
         ...state,
-        correct,
-        wrong,
-        random,
+        answerState: !state.answerState,
+      };
+    case GET_NEXT_QUESTION:
+      return {
+        ...state,
+        counter: state.counter + 1,
       };
     default:
       return state;

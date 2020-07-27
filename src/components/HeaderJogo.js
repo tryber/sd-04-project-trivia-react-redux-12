@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 
-const HeaderJogo = (props) => {
+export default function HeaderJogo(props) {
   const { email, name } = props;
   return (
     <header className="HeaderCard">
@@ -30,17 +29,9 @@ Pontuação: 0
       </div>
     </header>
   );
-};
-
-const mapStateToProps = (state) => ({
-  email: state.players.email,
-  name: state.players.name,
-//  score: state.trivia.score,
-});
+}
 
 HeaderJogo.propTypes = {
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
-
-export default connect(mapStateToProps)(HeaderJogo);
