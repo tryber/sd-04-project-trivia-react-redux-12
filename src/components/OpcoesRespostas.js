@@ -19,9 +19,9 @@ class OpcoesRespostas extends Component {
 
   mapAnswers = () => {
     const {
-      correct, wrong, getAnswers, contador, random,
+      correct, wrong, getAnswers, contador, random, questions,
     } = this.props;
-    const objQuestions = questions.results[contador];
+    const objQuestions = questions[contador];
     const arrayAnswers = [];
     arrayAnswers.push(...objQuestions.incorrect_answers);
     arrayAnswers.push(objQuestions.correct_answer);
@@ -51,11 +51,20 @@ class OpcoesRespostas extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.mapAnswers()}
-      </div>
-    );
+    const {
+      loading, questions, error,
+    } = this.props;
+    if (questions) {
+      return (
+        <div>
+          {this.mapAnswers()}
+        </div>
+      );
+    }
+    if (!loading) {
+      return <div>Loading...</div>;
+    }
+    return <div>{error}</div>;
   }
 }
 
@@ -63,6 +72,9 @@ const mapStateToProps = (state) => ({
   correct: state.answers.correct,
   wrong: state.answers.wrong,
   random: state.answers.random,
+  questions: state.questions.data.results,
+  loading: state.questions.loading,
+  error: state.questions.error,
 });
 
 OpcoesRespostas.propTypes = {

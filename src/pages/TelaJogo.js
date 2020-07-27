@@ -7,8 +7,8 @@ import { getQuestions } from '../actions';
 
 export class TelaJogo extends Component {
   componentDidMount() {
-    const { getQuestions, token, loading } = this.props;
-    if (!loading) {
+    const { getQuestions, token, loadingToken } = this.props;
+    if (!loadingToken) {
       getQuestions(token);
     }
   }
@@ -26,17 +26,17 @@ export class TelaJogo extends Component {
 TelaJogo.propTypes = {
   token: PropTypes.string,
   getQuestions: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
+  loadingToken: PropTypes.bool,
 };
 
 TelaJogo.defaultProps = {
   token: '404',
-  loading: true,
+  loadingToken: true,
 };
 
 const mapStateToProps = (state) => ({
   token: state.questions.token,
-  loading: state.questions.loading,
+  loadingToken: state.questions.loadingToken,
 });
 
 export default connect(mapStateToProps, { getQuestions })(TelaJogo);

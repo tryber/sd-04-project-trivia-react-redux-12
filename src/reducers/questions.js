@@ -9,6 +9,7 @@ const initialState = {
   data: {},
   error: null,
   loading: true,
+  loadingToken: true,
   token: null,
 };
 
@@ -20,11 +21,12 @@ function questions(state = initialState, {
       return {
         ...state,
         token: token.token,
-        loading: false,
+        loadingToken: false,
       };
     case GET_QUESTIONS_REQUEST:
       return {
         ...state,
+        loadingToken: false,
         loading: true,
       };
     case GET_QUESTIONS_SUCCESS:
