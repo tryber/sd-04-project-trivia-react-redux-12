@@ -6,7 +6,7 @@ import md5 from 'crypto-js/md5';
 import { setPlayer, setToken } from '../actions';
 import { apiToken } from '../service';
 
-class TelaInicial extends Component {
+export class TelaInicial extends Component {
   constructor(props) {
     super(props);
     this.state = {

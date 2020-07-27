@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import questions from '../mock_data/questions';
-import { getAnswers } from '../actions/index';
+import { getAnswers } from '../actions';
 
 class OpcoesRespostas extends Component {
   shuffle = (array) => {

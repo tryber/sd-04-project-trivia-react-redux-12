@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-// import * as pages from './pages';
 import TelaInicial from './Pages/TelaInicial';
 import TelaJogo from './Pages/TelaJogo';
 import Feedback from './Pages/Feedback';
