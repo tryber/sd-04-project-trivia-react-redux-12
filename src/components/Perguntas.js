@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-<<<<<<< HEAD
+import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-=======
->>>>>>> 6119a58a8760941050952c3eaeae10f83ec4609d
-=======
-
-import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
->>>>>>> 874612b26498ae53f062a848e1fc1d89aa9692fc
 import questions from '../mock_data/questions';
 import OpcoesRespostas from './OpcoesRespostas';
+import { clearBtn } from '../actions/index';
 
 class Perguntas extends Component {
   constructor(props) {
@@ -25,6 +18,8 @@ class Perguntas extends Component {
 
   render() {
     const { contador } = this.state;
+    const { clearBorderButton } = this.props;
+    // const { correct, wrong } = this.props;
     const objQuestions = questions.results[contador];
     return (
       <div>
@@ -37,7 +32,10 @@ class Perguntas extends Component {
           </Link>
         ) : (
           <Button
-            onClick={() => this.handleClick(contador)}
+            onClick={() => {
+              this.handleClick(contador);
+              clearBorderButton();
+            }}
             data-testid="btn-next"
           >
             confirmar
@@ -48,4 +46,9 @@ class Perguntas extends Component {
   }
 }
 
-export default Perguntas;
+const mapDispatchToProps = (dispatch) => ({
+  clearBorderButton: () => dispatch(clearBtn()),
+});
+
+export default connect(null, mapDispatchToProps)(Perguntas);
+// export default Perguntas;
