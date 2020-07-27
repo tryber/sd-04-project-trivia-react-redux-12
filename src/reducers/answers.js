@@ -1,5 +1,5 @@
 import {
-  ANSWERS,
+  GET_ANSWERS,
 } from '../actions';
 
 const INITIALL_STATE = {
@@ -10,7 +10,7 @@ const INITIALL_STATE = {
 
 const answers = (state = INITIALL_STATE, action) => {
   switch (action.type) {
-    case ANSWERS:
+    case GET_ANSWERS:
       return {
         ...state,
         correct: action.correct,

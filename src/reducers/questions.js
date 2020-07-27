@@ -2,7 +2,7 @@ import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE,
-  GET_TOKEN_SUCCESS,
+  SET_TOKEN,
 } from '../actions';
 
 const initialState = {
@@ -16,7 +16,7 @@ function questions(state = initialState, {
   type, error, data, token,
 }) {
   switch (type) {
-    case GET_TOKEN_SUCCESS:
+    case SET_TOKEN:
       return {
         ...state,
         token: token.token,

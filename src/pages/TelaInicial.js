@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { setInput, getToken } from '../actions';
+import md5 from 'crypto-js/md5';
+import { setPlayer, setToken } from '../actions';
+import { apiToken } from '../service';
 
 class TelaInicial extends Component {
   constructor(props) {
@@ -14,27 +15,52 @@ class TelaInicial extends Component {
     };
   }
 
-  requestToken = () => {
-    const { getToken } = this.props;
-    getToken();
-  }
-
-  verificacao = () => {
+  checkDisable = () => {
     const { email, name } = this.state;
     if (!email || !name) return true;
     return false;
+  };
+
+  setLocalState = () => {
+    const { setPlayer } = this.props;
+    const { email, name } = this.state;
+    setPlayer(email, name);
+    let currentRanking = localStorage.getItem('ranking');
+    if (!currentRanking) {
+      const ranking = JSON.stringify([{ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` }]);
+      localStorage.setItem('ranking', ranking);
+    } else {
+      console.log('ok');
+      currentRanking = JSON.parse(currentRanking);
+      currentRanking.push({ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` });
+      localStorage.setItem('ranking', JSON.stringify(currentRanking));
+    }
+    const state = JSON.stringify({
+      name, assertions: 0, score: 0, gravatarEmail: email,
+    });
+    localStorage.setItem('state', state);
   }
+
+  setTokenAndRoute = () => {
+    const { setToken, history } = this.props;
+    this.setLocalState();
+    apiToken()
+      .then((value) => {
+        localStorage.setItem('token', value.token);
+        setToken(value);
+      })
+      .then(() => history.push('/game'));
+  };
 
   render() {
     const { email, name } = this.state;
-    const { setInput } = this.props;
     return (
       <div className="Card">
         <form autoComplete="off">
           <TextField
             onChange={(event) => this.setState({ email: event.target.value })}
             data-testid="input-gravatar-email"
-            label="Email do Gravata"
+            label="Email do Gravatar"
             id="Email"
             value={email}
             variant="outlined"
@@ -49,16 +75,14 @@ class TelaInicial extends Component {
             value={name}
             onChange={(event) => this.setState({ name: event.target.value })}
           />
-          <Link to="/game">
-            <button
-              type="button"
-              disabled={this.verificacao()}
-              data-testid="btn-play"
-              onClick={() => { setInput(email, name); this.requestToken(); }}
-            >
+          <button
+            type="button"
+            disabled={this.checkDisable()}
+            data-testid="btn-play"
+            onClick={() => this.setTokenAndRoute()}
+          >
               Jogar
-            </button>
-          </Link>
+          </button>
         </form>
       </div>
     );
@@ -66,8 +90,11 @@ class TelaInicial extends Component {
 }
 
 TelaInicial.propTypes = {
-  setInput: PropTypes.func.isRequired,
-  getToken: PropTypes.func.isRequired,
+  setPlayer: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
 };
 
-export default connect(null, { setInput, getToken })(TelaInicial);
+export default connect(null, { setPlayer, setToken })(TelaInicial);

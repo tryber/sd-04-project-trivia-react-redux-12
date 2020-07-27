@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HeaderJogo from '../components/HeaderJogo';
 import Perguntas from '../components/Perguntas';
-import { setInput, getQuestions } from '../actions';
+import { getQuestions } from '../actions';
 
 export class TelaJogo extends Component {
   componentDidMount() {
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
   loading: state.questions.loading,
 });
 
-export default connect(mapStateToProps, { setInput, getQuestions })(TelaJogo);
+export default connect(mapStateToProps, { getQuestions })(TelaJogo);

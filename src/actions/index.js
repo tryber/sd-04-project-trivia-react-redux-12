@@ -1,20 +1,21 @@
-import { apiToken, apiQuestions } from '../service';
+import { apiQuestions } from '../service';
 
-export const INPUT_CHANGE = 'INPUT_CHANGE';
-export const ANSWERS = 'ANSWERS';
+export const SET_PLAYER = 'SET_PLAYER';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const GET_ANSWERS = 'GET_ANSWERS';
 export const GET_QUESTIONS_REQUEST = 'GET_QUESTIONS_REQUEST';
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const GET_QUESTIONS_FAILURE = 'GET_QUESTIONS_FAILURE';
-export const GET_TOKEN_SUCCESS = 'GET_TOKEN_SUCCESS';
+export const SET_TOKEN = 'SET_TOKEN';
 
-export const setInput = (email, name) => ({
-  type: INPUT_CHANGE,
+export const setPlayer = (email, name) => ({
+  type: SET_PLAYER,
   email,
   name,
 });
 
-export const answers = (correct, wrong, random) => ({
-  type: ANSWERS,
+export const getAnswers = (correct, wrong, random) => ({
+  type: GET_ANSWERS,
   correct,
   wrong,
   random,
@@ -34,15 +35,10 @@ export const getQuestionsFailure = (error) => ({
   error,
 });
 
-export const getTokenSuccess = (token) => ({
-  type: GET_TOKEN_SUCCESS,
+export const setToken = (token) => ({
+  type: SET_TOKEN,
   token,
 });
-
-export const getToken = () => (dispatch) => {
-  apiToken()
-    .then((data) => dispatch(getTokenSuccess(data)));
-};
 
 export const getQuestions = (token) => (dispatch) => {
   dispatch(getQuestionsRequest());
