@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import OpcoesRespostas from './OpcoesRespostas';
 
 export class Perguntas extends Component {
@@ -48,6 +49,12 @@ export class Perguntas extends Component {
     return <div>{error}</div>;
   }
 }
+
+Perguntas.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.shape,
+  questions: PropTypes.shape,
+};
 
 const mapStateToProps = (state) => ({
   questions: state.questions.data.results,

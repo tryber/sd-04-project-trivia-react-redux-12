@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import { Link } from 'react-router-dom';
 import { setPlayer, setToken } from '../actions';
 import { apiToken } from '../service';
 
@@ -63,6 +64,7 @@ export class TelaInicial extends Component {
             onChange={(event) => this.setState({ email: event.target.value })}
             size="small"
             value={email}
+            variant="outlined"
           />
           <TextField
             data-testid="input-player-name"
@@ -70,15 +72,27 @@ export class TelaInicial extends Component {
             onChange={(event) => this.setState({ name: event.target.value })}
             size="small"
             value={name}
+            variant="outlined"
           />
-          <button
+          <br />
+          <Button
+            variant="contained"
             data-testid="btn-play"
             disabled={this.checkDisable()}
             onClick={() => this.setTokenAndRoute()}
             type="button"
           >
               Jogar
-          </button>
+          </Button>
+          <Link to="/config">
+            <Button
+              variant="contained"
+              data-testid="btn-settings"
+              type="button"
+            >
+              Configurações
+            </Button>
+          </Link>
         </form>
       </div>
     );
