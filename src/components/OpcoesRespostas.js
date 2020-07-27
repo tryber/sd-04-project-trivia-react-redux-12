@@ -4,6 +4,43 @@ import PropTypes from 'prop-types';
 import { getAnswers } from '../actions';
 
 class OpcoesRespostas extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: 30,
+      score: 0,
+    } 
+  }
+
+  componentDidMount() {
+    this.countDown();
+  }
+
+  countDown() {
+    this.clock = setInterval(() => {
+      if(this.state.timer > 0)this.setState({timer: this.state.timer - 1})
+      else { alert('tempo acabou'); clearInterval(this.clock) }
+    },1000);
+  }
+
+  handleClick = (contador) => {
+    this.setState({contador: contador + 1,
+      timer: 30,});
+  }
+
+  fullscore = (index) => {
+    const { score, timer } = this.state;
+    switch(this.props.questions[index].difficulty) {
+      case'hard':
+        return this.setState({score: score + 10 + (timer * 3)});
+      case'medium':
+        return this.setState({score: score + 10 + (timer * 2)});
+      case'easy':
+        return this.setState({score: score + 10 + (timer * 1)});
+      default:
+        return true;
+    }
+  };
   shuffle = (array) => {
     let m = array.length;
     let t;
@@ -24,7 +61,7 @@ class OpcoesRespostas extends Component {
     const arrayAnswers = [];
     arrayAnswers.push(...objQuestions.incorrect_answers);
     arrayAnswers.push(objQuestions.correct_answer);
-    if (random === 'false') this.shuffle(arrayAnswers);
+    if (random === 'false') arrayAnswers.sort();
 
     return arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
       <button
@@ -32,7 +69,7 @@ class OpcoesRespostas extends Component {
         key={element}
         data-testid="correct-answer"
         className={correct}
-        onClick={() => getAnswers('correct', 'wrong', 'true')}
+        onClick={() => { getAnswers('correct', 'wrong', 'true'); clearInterval(this.clock); this.fullscore(index) }}
       >
         {element}
       </button>
@@ -42,7 +79,7 @@ class OpcoesRespostas extends Component {
         key={element}
         data-testid={`wrong-answer-${index}`}
         className={wrong}
-        onClick={() => getAnswers('correct', 'wrong', 'true')}
+        onClick={() => { getAnswers('correct', 'wrong', 'true'); clearInterval(this.clock);}}
       >
         {element}
       </button>
@@ -50,6 +87,7 @@ class OpcoesRespostas extends Component {
   }
 
   render() {
+    const { timer } = this.state;
     const {
       loading, questions, error,
     } = this.props;
@@ -57,6 +95,7 @@ class OpcoesRespostas extends Component {
       return (
         <div>
           {this.mapAnswers()}
+          {timer}
         </div>
       );
     }

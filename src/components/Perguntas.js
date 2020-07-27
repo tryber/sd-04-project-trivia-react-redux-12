@@ -17,7 +17,6 @@ export class Perguntas extends Component {
   handleClick = (contador) => {
     this.setState({contador: contador + 1});
   }
-    
 
   render() {
     const {
@@ -46,7 +45,7 @@ export class Perguntas extends Component {
         </div>
       );
     }
-    if (!loading) {
+    if (loading) {
       return <div>Loading...</div>;
     }
     return <div>{error}</div>;
