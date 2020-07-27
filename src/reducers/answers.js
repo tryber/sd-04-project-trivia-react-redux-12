@@ -8,14 +8,16 @@ const INITIALL_STATE = {
   random: 'false',
 };
 
-const answers = (state = INITIALL_STATE, action) => {
-  switch (action.type) {
+const answers = (state = INITIALL_STATE, {
+  type, correct, wrong, random,
+}) => {
+  switch (type) {
     case GET_ANSWERS:
       return {
         ...state,
-        correct: action.correct,
-        wrong: action.wrong,
-        random: action.random,
+        correct,
+        wrong,
+        random,
       };
     default:
       return state;

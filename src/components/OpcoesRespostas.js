@@ -17,11 +17,17 @@ class OpcoesRespostas extends Component {
     }
   };
 
-  mapAnswers = (arrayAnswers, objQuestions) => {
+  mapAnswers = () => {
     const {
-      correct, wrong, getAnswers,
+      correct, wrong, getAnswers, contador, random,
     } = this.props;
-    arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
+    const objQuestions = questions.results[contador];
+    const arrayAnswers = [];
+    arrayAnswers.push(...objQuestions.incorrect_answers);
+    arrayAnswers.push(objQuestions.correct_answer);
+    if (random === 'false') this.shuffle(arrayAnswers);
+
+    return arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
       <button
         type="button"
         key={element}
@@ -45,18 +51,9 @@ class OpcoesRespostas extends Component {
   }
 
   render() {
-    const {
-      contador, random,
-    } = this.props;
-    const objQuestions = questions.results[contador];
-    const arrayAnswers = [];
-    arrayAnswers.push(...objQuestions.incorrect_answers);
-    arrayAnswers.push(objQuestions.correct_answer);
-
-    if (random === 'false') this.shuffle(arrayAnswers);
     return (
       <div>
-        {this.mapAnswers(arrayAnswers, objQuestions)}
+        {this.mapAnswers()}
       </div>
     );
   }

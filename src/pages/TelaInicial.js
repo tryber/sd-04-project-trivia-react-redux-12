@@ -58,24 +58,24 @@ class TelaInicial extends Component {
       <div className="Card">
         <form autoComplete="off">
           <TextField
-            onChange={(event) => this.setState({ email: event.target.value })}
             data-testid="input-gravatar-email"
-            value={email}
-            variant="outlined"
+            label="Email do Jogador"
+            onChange={(event) => this.setState({ email: event.target.value })}
             size="small"
+            value={email}
           />
           <TextField
-            label="Nome do Jogador"
-            size="small"
             data-testid="input-player-name"
-            value={name}
+            label="Nome do Jogador"
             onChange={(event) => this.setState({ name: event.target.value })}
+            size="small"
+            value={name}
           />
           <button
-            type="button"
-            disabled={this.checkDisable()}
             data-testid="btn-play"
+            disabled={this.checkDisable()}
             onClick={() => this.setTokenAndRoute()}
+            type="button"
           >
               Jogar
           </button>
