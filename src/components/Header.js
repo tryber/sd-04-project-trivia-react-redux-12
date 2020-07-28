@@ -4,7 +4,7 @@ import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 
-function HeaderJogo(props) {
+function Header(props) {
   const { email, name, score } = props;
   return (
     <header className="HeaderCard">
@@ -30,7 +30,7 @@ Pontuação:
   );
 }
 
-HeaderJogo.propTypes = {
+Header.propTypes = {
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => ({
   score: state.players.score,
 });
 
-export default connect(mapStateToProps)(HeaderJogo);
+export default connect(mapStateToProps)(Header);
