@@ -20,20 +20,6 @@ export class Game extends Component {
     this.countDown();
   }
 
-  calcScore = (difficulty) => {
-    const { score, timer } = this.state;
-    switch (difficulty) {
-      case 'hard':
-        return ((score + 10) + (timer * 3));
-      case 'medium':
-        return ((score + 10) + (timer * 2));
-      case 'easy':
-        return ((score + 10) + (timer * 1));
-      default:
-        return true;
-    }
-  };
-
   updateLocalState = (difficulty) => {
     const currentState = JSON.parse(localStorage.getItem('state'));
     const newScore = this.calcScore(difficulty);
@@ -65,6 +51,20 @@ export class Game extends Component {
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
     }
   }
+
+  calcScore = (difficulty) => {
+    const { score, timer } = this.state;
+    switch (difficulty) {
+      case 'hard':
+        return ((score + 10) + (timer * 3));
+      case 'medium':
+        return ((score + 10) + (timer * 2));
+      case 'easy':
+        return ((score + 10) + (timer * 1));
+      default:
+        return true;
+    }
+  };
 
   countDown = () => {
     this.clock = setInterval(() => {
