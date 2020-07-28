@@ -96,7 +96,7 @@ export class Game extends Component {
     } = this.props;
     const { timer } = this.state;
     return (
-      <>
+      <React.Fragment>
         {counter === 4 ? (
           <Link to="/feedback" data-testid="btn-next">
             <button
@@ -118,7 +118,7 @@ export class Game extends Component {
             Confirmar
           </button>
         )}
-      </>
+      </React.Fragment>
     );
   }
 

@@ -17,7 +17,7 @@ export class TelaInicial extends Component {
   }
 
   returnInputs = (email, name) => (
-    <>
+    <React.Fragment>
       <TextField
         data-testid="input-gravatar-email"
         label="Email do Jogador"
@@ -34,7 +34,7 @@ export class TelaInicial extends Component {
         value={name}
         variant="outlined"
       />
-    </>
+    </React.Fragment>
   )
 
   setLocalState = () => {

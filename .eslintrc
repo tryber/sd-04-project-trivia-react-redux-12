@@ -16,6 +16,7 @@
         "extensions": [".js", ".jsx"]
       }
     ],
+    "react/jsx-fragments": "off",
     "react/prefer-stateless-function": 0,
     "react/require-default-props": "off"
   },
