@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import md5 from 'crypto-js/md5';
 import {
   toggleAnswers, getNextQuestion,
 } from '../actions';
@@ -63,6 +64,27 @@ export class Game extends Component {
     this.setState({ score: newState.player.score });
   }
 
+  setRanking = () => {
+    const currentState = JSON.parse(localStorage.getItem('state'));
+    let currentRanking = localStorage.getItem('ranking');
+    if (!currentRanking) {
+      const ranking = JSON.stringify([{
+        name: currentState.player.name,
+        score: currentState.player.score,
+        picture: `https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`,
+      }]);
+      localStorage.setItem('ranking', ranking);
+    } else {
+      currentRanking = JSON.parse(currentRanking);
+      currentRanking.push({
+        name: currentState.player.name,
+        score: currentState.player.score,
+        picture: `https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`,
+      });
+      localStorage.setItem('ranking', JSON.stringify(currentRanking));
+    }
+  }
+
   renderAnswers = () => {
     const {
       questions, toggleAnswers, answerState, counter,
@@ -117,6 +139,7 @@ export class Game extends Component {
               data-testid="btn-next"
               type="button"
               className={answerState || timer === 0 ? '' : 'hiddenBtn'}
+              onClick={() => this.setRanking()}
             >
             Feedback
             </button>

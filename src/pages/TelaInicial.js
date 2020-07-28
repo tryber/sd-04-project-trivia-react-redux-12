@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import md5 from 'crypto-js/md5';
 import { Link } from 'react-router-dom';
 import { setToken } from '../actions';
 import { apiToken } from '../service';
@@ -18,15 +17,6 @@ export class TelaInicial extends Component {
 
   setLocalState = () => {
     const { email, name } = this.state;
-    let currentRanking = localStorage.getItem('ranking');
-    if (!currentRanking) {
-      const ranking = JSON.stringify([{ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` }]);
-      localStorage.setItem('ranking', ranking);
-    } else {
-      currentRanking = JSON.parse(currentRanking);
-      currentRanking.push({ player: { name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` } });
-      localStorage.setItem('ranking', JSON.stringify(currentRanking));
-    }
     const state = JSON.stringify({
       player: {
         name, assertions: 0, score: 0, gravatarEmail: email,
