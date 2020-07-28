@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 
 function HeaderJogo(props) {
-  const { email, name } = props;
+  const { email, name, score } = props;
   return (
     <header className="HeaderCard">
       <div className="HeaderFeedback">
@@ -17,13 +17,11 @@ function HeaderJogo(props) {
           <div className="HeaderFeebackInfo">
             <p data-testid="header-player-name">
 Jogador:
-              {' '}
               {name}
             </p>
             <p data-testid="header-score">
-Pontuação: 0
-              {' '}
-              {/* {props.score} */}
+Pontuação:
+              {score}
             </p>
           </div>
         </div>
@@ -35,11 +33,13 @@ Pontuação: 0
 HeaderJogo.propTypes = {
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.players.email,
   name: state.players.name,
+  score: state.players.score,
 });
 
 export default connect(mapStateToProps)(HeaderJogo);

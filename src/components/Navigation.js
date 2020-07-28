@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -17,7 +16,9 @@ export class Navigation extends Component {
       <div>
         {counter === 4 ? (
           <Link to="/feedback" data-testid="btn-next">
-              Feedback
+            <Button>
+              Confirmar
+            </Button>
           </Link>
         ) : (
           <Button

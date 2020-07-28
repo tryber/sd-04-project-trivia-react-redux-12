@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
+import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 import HeaderJogo from '../components/HeaderJogo';
 
-export default class Feedback extends Component {
+class Feedback extends Component {
   render() {
+    const { player } = this.props;
+    const { assertions, score } = player;
     return (
       <div className="CardFeedback">
         <HeaderJogo />
         <div className="BodyFeedback">
-          <p data-testid="feedback-text">Mensagem de feedback</p>
-          <p data-testid="feedback-total-score">Full Score: 0</p>
-          <p data-testid="feedback-total-question">Hits</p>
+          <p data-testid="feedback-text">
+            {(assertions >= 3
+              ? 'mandou bem!' : 'Podia ser melhor..')}
+          </p>
+          <p data-testid="feedback-total-score">
+Full Score:
+            {score}
+          </p>
+          <p data-testid="feedback-total-question">
+            Hits:
+            {assertions}
+          </p>
         </div>
         <div className="FooterFeedback">
           <Link to="/">
@@ -27,3 +40,17 @@ export default class Feedback extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  score: state.players.score,
+  player: state.players,
+});
+
+Feedback.propTypes = {
+  player: PropTypes.shape({
+    assertions: PropTypes.number,
+    score: PropTypes.number,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps)(Feedback);
