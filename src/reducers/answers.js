@@ -1,6 +1,7 @@
 import {
   GET_NEXT_QUESTION,
   TOGGLE_ANSWERS,
+  RESET_COUNTER,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -19,6 +20,12 @@ const answers = (state = INITIAL_STATE, { type }) => {
       return {
         ...state,
         counter: state.counter + 1,
+        answerState: false,
+      };
+    case RESET_COUNTER:
+      return {
+        ...state,
+        counter: 0,
         answerState: false,
       };
     default:

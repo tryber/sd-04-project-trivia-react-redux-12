@@ -12,7 +12,6 @@ export class Game extends Component {
     this.state = {
       timer: 30,
       score: 0,
-      assertions: 0,
     };
   }
 
@@ -52,16 +51,16 @@ export class Game extends Component {
 
   updateLocalState = (difficulty) => {
     const currentState = JSON.parse(localStorage.getItem('state'));
-    console.log(currentState);
     const newScore = this.calcScore(difficulty);
-    console.log(newScore);
     const newState = {
-      ...currentState,
-      assertions: currentState.assertions + 1,
-      score: currentState.score + newScore,
+      player: {
+        ...currentState.player,
+        assertions: currentState.player.assertions + 1,
+        score: currentState.player.score + newScore,
+      },
     };
     localStorage.setItem('state', JSON.stringify(newState));
-    this.setState({ score: newState.score, assertions: newState.assertions });
+    this.setState({ score: newState.player.score });
   }
 
   renderAnswers = () => {

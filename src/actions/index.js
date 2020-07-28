@@ -8,6 +8,7 @@ export const SET_TOKEN = 'SET_TOKEN';
 // answers actions
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
 export const TOGGLE_ANSWERS = 'TOGGLE_ANSWERS';
+export const RESET_COUNTER = 'RESET_COUNTER';
 
 // questions actionCreators
 export const getQuestionsRequest = () => ({
@@ -36,6 +37,10 @@ export const getNextQuestion = () => ({
 
 export const toggleAnswers = () => ({
   type: TOGGLE_ANSWERS,
+});
+
+export const resetCounter = () => ({
+  type: RESET_COUNTER,
 });
 
 // API dispatch

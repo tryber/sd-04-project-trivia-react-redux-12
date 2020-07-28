@@ -3,18 +3,8 @@ import md5 from 'crypto-js/md5';
 import logo from '../trivia.png';
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      score: 0,
-      assertions: 0,
-      name: '',
-      email: '',
-    };
-  }
-
   render() {
-    const { name, email, score } = this.state;
+    const currentState = JSON.parse(localStorage.getItem('state'));
     return (
       <header className="HeaderCard">
         <div className="HeaderFeedback">
@@ -23,18 +13,18 @@ export default class Header extends Component {
             <div className="HeaderFeedbackPic">
               <img
                 data-testid="header-profile-picture"
-                src={`https://www.gravatar.com/avatar/${md5(email).toString()}`}
+                src={`https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`}
                 alt="gravatar"
               />
             </div>
             <div className="HeaderFeebackInfo">
               <p data-testid="header-player-name">
             Jogador:
-                {` ${name}`}
+                {` ${currentState.player.name}`}
               </p>
               <p data-testid="header-score">
             Pontuação:
-                {` ${score}`}
+                {` ${currentState.player.score}`}
               </p>
             </div>
           </div>

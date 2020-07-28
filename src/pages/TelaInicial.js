@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { Link } from 'react-router-dom';
@@ -24,11 +24,13 @@ export class TelaInicial extends Component {
       localStorage.setItem('ranking', ranking);
     } else {
       currentRanking = JSON.parse(currentRanking);
-      currentRanking.push({ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` });
+      currentRanking.push({ player: { name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` } });
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
     }
     const state = JSON.stringify({
-      name, assertions: 0, score: 0, gravatarEmail: email,
+      player: {
+        name, assertions: 0, score: 0, gravatarEmail: email,
+      },
     });
     localStorage.setItem('state', state);
   }
@@ -46,21 +48,17 @@ export class TelaInicial extends Component {
 
   returnInputs = (email, name) => (
     <React.Fragment>
-      <TextField
+      <input
         data-testid="input-gravatar-email"
         label="Email do Jogador"
         onChange={(event) => this.setState({ email: event.target.value })}
-        size="small"
         value={email}
-        variant="outlined"
       />
-      <TextField
+      <input
         data-testid="input-player-name"
         label="Nome do Jogador"
         onChange={(event) => this.setState({ name: event.target.value })}
-        size="small"
         value={name}
-        variant="outlined"
       />
     </React.Fragment>
   )
