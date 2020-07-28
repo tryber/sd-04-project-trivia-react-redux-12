@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../components/HeaderJogo';
+import Header from '../components/Header';
 
 export class Feedback extends Component {
   render() {
