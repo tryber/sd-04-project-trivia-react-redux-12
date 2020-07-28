@@ -1,115 +1,89 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD:src/components/Game.js
-import { toggleAnswers } from '../actions';
-=======
-import { getAnswers } from '../actions';
+import {
+  toggleAnswers, updateScore, getNextQuestion, tick, toggleTimer,
+} from '../actions';
 
-class OpcoesRespostas extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timer: 30,
-      score: 0,
-    } 
-  }
-
+export class Game extends Component {
   componentDidMount() {
-    this.countDown();
+    const { toggleTimer } = this.props;
+    toggleTimer();
   }
 
-  countDown() {
+  componentDidUpdate(prevProps) {
+    const { timerRunning } = this.props;
+    if (prevProps.timerRunning !== timerRunning) {
+      this.countDown();
+    }
+  }
+
+  countDown = () => {
+    const { timer, tick } = this.props;
     this.clock = setInterval(() => {
-      if(this.state.timer > 0)this.setState({timer: this.state.timer - 1})
-      else { alert('tempo acabou'); clearInterval(this.clock) }
-    },1000);
-  }
+      if (timer > 0) tick();
+      else {
+        alert('Acabou seu tempo!');
+        clearInterval(this.clock);
+      }
+    }, 1000);
+  };
 
-  handleClick = (contador) => {
-    this.setState({contador: contador + 1,
-      timer: 30,});
-  }
-
-  fullscore = (index) => {
-    const { score, timer } = this.state;
-    switch(this.props.questions[index].difficulty) {
-      case'hard':
-        return this.setState({score: score + 10 + (timer * 3)});
-      case'medium':
-        return this.setState({score: score + 10 + (timer * 2)});
-      case'easy':
-        return this.setState({score: score + 10 + (timer * 1)});
+  calcScore = (difficulty) => {
+    const { score, updateScore, timer } = this.props;
+    switch (difficulty) {
+      case 'hard':
+        return updateScore(score + 10 + timer * 3);
+      case 'medium':
+        return updateScore(score + 10 + timer * 2);
+      case 'easy':
+        return updateScore(score + 10 + timer * 1);
       default:
         return true;
     }
   };
-  shuffle = (array) => {
-    let m = array.length;
-    let t;
-    let i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
-    }
-  };
->>>>>>> master:src/components/OpcoesRespostas.js
 
-export class Game extends Component {
   mapAnswers = () => {
     const {
       questions, toggleAnswers, answerState, counter,
     } = this.props;
     const objQuestions = questions[counter];
-    const arrayAnswers = [];
-    arrayAnswers.push(...objQuestions.incorrect_answers);
-    arrayAnswers.push(objQuestions.correct_answer);
-<<<<<<< HEAD:src/components/Game.js
-=======
-    if (random === 'false') arrayAnswers.sort();
->>>>>>> master:src/components/OpcoesRespostas.js
-
-    return arrayAnswers.map((element, index) => (element === objQuestions.correct_answer ? (
+    const arrayAnswers = objQuestions.incorrect_answers.map(
+      (element, index) => (
+        <button
+          className={answerState ? 'wrong' : ''}
+          data-testid={`wrong-answer-${index}`}
+          key={element}
+          type="button"
+          onClick={() => {
+            toggleAnswers();
+            clearInterval(this.clock);
+          }}
+        >
+          {element}
+        </button>
+      ),
+    );
+    arrayAnswers.push(
       <button
-        aria-label={element}
         className={answerState ? 'correct' : ''}
         data-testid="correct-answer"
-<<<<<<< HEAD:src/components/Game.js
-        key={element}
-        onClick={() => toggleAnswers()}
+        onClick={() => {
+          toggleAnswers();
+          clearInterval(this.clock);
+          this.calcScore(objQuestions.difficulty);
+        }}
         type="button"
-=======
-        className={correct}
-        onClick={() => { getAnswers('correct', 'wrong', 'true'); clearInterval(this.clock); this.fullscore(index) }}
->>>>>>> master:src/components/OpcoesRespostas.js
       >
-        {element}
-      </button>
-    ) : (
-      <button
-        aria-label={element}
-        className={answerState ? 'wrong' : ''}
-        data-testid={`wrong-answer-${index}`}
-<<<<<<< HEAD:src/components/Game.js
-        key={element}
-        onClick={() => toggleAnswers()}
-        type="button"
-=======
-        className={wrong}
-        onClick={() => { getAnswers('correct', 'wrong', 'true'); clearInterval(this.clock);}}
->>>>>>> master:src/components/OpcoesRespostas.js
-      >
-        {element}
-      </button>
-    )));
-  }
+        {objQuestions.correct_answer}
+      </button>,
+    );
+    return arrayAnswers;
+  };
 
   render() {
-    const { timer } = this.state;
     const {
-      loading, questions, error, counter,
+      loading, questions, error, counter, timer,
     } = this.props;
     if (questions) {
       const currentQuestion = questions[counter];
@@ -135,6 +109,9 @@ const mapStateToProps = (state) => ({
   error: state.questions.error,
   loading: state.questions.loading,
   questions: state.questions.data.results,
+  score: state.players.score,
+  timer: state.answers.timer,
+  timerRunning: state.answers.timerRunning,
 });
 
 Game.propTypes = {
@@ -143,7 +120,15 @@ Game.propTypes = {
   error: PropTypes.shape,
   loading: PropTypes.bool,
   questions: PropTypes.shape,
+  score: PropTypes.number,
+  tick: PropTypes.func.isRequired,
+  timer: PropTypes.number,
+  timerRunning: PropTypes.bool,
   toggleAnswers: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
+  updateScore: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { toggleAnswers })(Game);
+export default connect(mapStateToProps, {
+  toggleAnswers, updateScore, getNextQuestion, tick, toggleTimer,
+})(Game);

@@ -9,13 +9,22 @@ export const GET_QUESTIONS_FAILURE = 'GET_QUESTIONS_FAILURE';
 export const SET_TOKEN = 'SET_TOKEN';
 // answers actions
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
-export const TOOGLE_ANSWERS = 'TOOGLE_ANSWERS';
+export const TOGGLE_ANSWERS = 'TOGGLE_ANSWERS';
+export const TOGGLE_TIMER = 'TOGGLE_TIMER';
+export const RESET_TIMER = 'RESET_TIMER';
+export const TICK = 'TICK';
 
 // players actionCreators
 export const setPlayer = (email, name) => ({
   type: SET_PLAYER,
   email,
   name,
+});
+
+export const updateScore = (score, assertions) => ({
+  type: UPDATE_SCORE,
+  score,
+  assertions,
 });
 
 export const getQuestionsRequest = () => ({
@@ -43,7 +52,19 @@ export const getNextQuestion = () => ({
 });
 
 export const toggleAnswers = () => ({
-  type: TOOGLE_ANSWERS,
+  type: TOGGLE_ANSWERS,
+});
+
+export const toggleTimer = () => ({
+  type: TOGGLE_TIMER,
+});
+
+export const resetTimer = () => ({
+  type: RESET_TIMER,
+});
+
+export const tick = () => ({
+  type: TICK,
 });
 
 // API dispatch

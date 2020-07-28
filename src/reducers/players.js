@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 };
 
 const players = (state = INITIAL_STATE, {
-  type, email, name, score, assertions,
+  type, email, name, score,
 }) => {
   switch (type) {
     case SET_PLAYER:
@@ -19,13 +19,12 @@ const players = (state = INITIAL_STATE, {
         ...state,
         email,
         name,
-        score,
       };
     case UPDATE_SCORE:
       return {
         ...state,
         score,
-        assertions,
+        assertions: state.assertions + 1,
       };
     default:
       return state;

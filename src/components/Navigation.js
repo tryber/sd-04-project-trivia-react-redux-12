@@ -4,12 +4,14 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { toggleAnswers, getNextQuestion } from '../actions';
+import {
+  toggleAnswers, getNextQuestion, resetTimer, toggleTimer,
+} from '../actions';
 
 export class Navigation extends Component {
   render() {
     const {
-      counter, getNextQuestion, toggleAnswers,
+      counter, getNextQuestion, toggleAnswers, resetTimer, toggleTimer,
     } = this.props;
     return (
       <>
@@ -19,7 +21,7 @@ export class Navigation extends Component {
           </Link>
         ) : (
           <Button
-            onClick={() => { toggleAnswers(); getNextQuestion(); }}
+            onClick={() => { toggleAnswers(); resetTimer(); getNextQuestion(); toggleTimer(); }}
             data-testid="btn-next"
           >
             Confirmar
@@ -33,11 +35,15 @@ export class Navigation extends Component {
 Navigation.propTypes = {
   counter: PropTypes.number,
   toggleAnswers: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
   getNextQuestion: PropTypes.func.isRequired,
+  resetTimer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   counter: state.answers.counter,
 });
 
-export default connect(mapStateToProps, { toggleAnswers, getNextQuestion })(Navigation);
+export default connect(mapStateToProps, {
+  toggleAnswers, getNextQuestion, resetTimer, toggleTimer,
+})(Navigation);
