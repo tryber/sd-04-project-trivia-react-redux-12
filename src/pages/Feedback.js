@@ -17,14 +17,8 @@ class Feedback extends Component {
             {(assertions >= 3
               ? 'mandou bem!' : 'Podia ser melhor..')}
           </p>
-          <p data-testid="feedback-total-score">
-Full Score:
-            {score}
-          </p>
-          <p data-testid="feedback-total-question">
-            Hits:
-            {assertions}
-          </p>
+          <p data-testid="feedback-total-score"> Full Score: {score} </p>
+          <p data-testid="feedback-total-question"> Hits: {assertions} </p>
         </div>
         <div className="FooterFeedback">
           <Link to="/">
