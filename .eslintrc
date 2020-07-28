@@ -4,6 +4,7 @@
     "arrow-parens": [2, "always"],
     "func-names": "off",
     "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/control-has-associated-label": 0,
     "no-alert": "off",
     "no-console": "off",
     "no-shadow": "off",

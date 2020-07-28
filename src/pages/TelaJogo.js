@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HeaderJogo from '../components/HeaderJogo';
-import Perguntas from '../components/Perguntas';
+import Game from '../components/Game';
 import { getQuestions } from '../actions';
 
 export class TelaJogo extends Component {
@@ -17,7 +17,7 @@ export class TelaJogo extends Component {
     return (
       <div className="Card">
         <HeaderJogo />
-        <Perguntas />
+        <Game />
       </div>
     );
   }

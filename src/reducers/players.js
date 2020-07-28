@@ -1,11 +1,13 @@
 import {
   SET_PLAYER,
+  UPDATE_SCORE,
 } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
   name: '',
   score: 0,
+  assertions: 0,
 };
 
 const players = (state = INITIAL_STATE, {
@@ -17,7 +19,12 @@ const players = (state = INITIAL_STATE, {
         ...state,
         email,
         name,
+      };
+    case UPDATE_SCORE:
+      return {
+        ...state,
         score,
+        assertions: state.assertions + 1,
       };
     default:
       return state;

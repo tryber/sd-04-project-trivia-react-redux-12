@@ -47,6 +47,21 @@ export class TelaInicial extends Component {
       .then(() => history.push('/game'));
   };
 
+  returnInputs = (email, name) => (
+    <div>
+      <TextField
+        data-testid="input-gravatar-email" label="Email do Jogador"
+        onChange={(event) => this.setState({ email: event.target.value })} size="small"
+        value={email} variant="outlined"
+      />
+      <TextField
+        data-testid="input-player-name" label="Nome do Jogador"
+        onChange={(event) => this.setState({ name: event.target.value })} size="small"
+        value={name} variant="outlined"
+      />
+    </div>
+  )
+
   checkDisable = () => {
     const { email, name } = this.state;
     if (!email || !name) return true;
@@ -58,38 +73,16 @@ export class TelaInicial extends Component {
     return (
       <div className="Card">
         <form autoComplete="off">
-          <TextField
-            data-testid="input-gravatar-email"
-            label="Email do Jogador"
-            onChange={(event) => this.setState({ email: event.target.value })}
-            size="small"
-            value={email}
-            variant="outlined"
-          />
-          <TextField
-            data-testid="input-player-name"
-            label="Nome do Jogador"
-            onChange={(event) => this.setState({ name: event.target.value })}
-            size="small"
-            value={name}
-            variant="outlined"
-          />
+          {this.returnInputs(email, name)}
           <br />
           <Button
-            variant="contained"
-            data-testid="btn-play"
-            disabled={this.checkDisable()}
-            onClick={() => this.setTokenAndRoute()}
-            type="button"
+            variant="contained" data-testid="btn-play" disabled={this.checkDisable()}
+            onClick={() => this.setTokenAndRoute()} type="button"
           >
-              Jogar
+            Jogar
           </Button>
           <Link to="/config">
-            <Button
-              variant="contained"
-              data-testid="btn-settings"
-              type="button"
-            >
+            <Button variant="contained" data-testid="btn-settings" type="button">
               Configurações
             </Button>
           </Link>
