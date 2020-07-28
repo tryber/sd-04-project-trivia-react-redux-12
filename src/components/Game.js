@@ -20,20 +20,6 @@ export class Game extends Component {
     this.countDown();
   }
 
-  updateLocalState = (difficulty) => {
-    const currentState = JSON.parse(localStorage.getItem('state'));
-    const newScore = this.calcScore(difficulty);
-    const newState = {
-      player: {
-        ...currentState.player,
-        assertions: currentState.player.assertions + 1,
-        score: currentState.player.score + newScore,
-      },
-    };
-    localStorage.setItem('state', JSON.stringify(newState));
-    this.setState({ score: newState.player.score });
-  }
-
   setRanking = () => {
     const currentState = JSON.parse(localStorage.getItem('state'));
     let currentRanking = localStorage.getItem('ranking');
@@ -50,6 +36,20 @@ export class Game extends Component {
       currentRanking.push(rankingItem);
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
     }
+  }
+
+  updateLocalState = (difficulty) => {
+    const currentState = JSON.parse(localStorage.getItem('state'));
+    const newScore = this.calcScore(difficulty);
+    const newState = {
+      player: {
+        ...currentState.player,
+        assertions: currentState.player.assertions + 1,
+        score: currentState.player.score + newScore,
+      },
+    };
+    localStorage.setItem('state', JSON.stringify(newState));
+    this.setState({ score: newState.player.score });
   }
 
   calcScore = (difficulty) => {
