@@ -9,7 +9,7 @@ export default class Ranking extends Component {
       <div className="Card">
         <div className="HeaderCard">
           <img src={logo} alt="logo" />
-          <h1>RANKING</h1>
+          <h1 data-testid="ranking-title">RANKING</h1>
         </div>
         <ul>
           <li>
