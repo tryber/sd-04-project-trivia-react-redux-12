@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import HeaderJogo from '../components/HeaderJogo';
 
-class Feedback extends Component {
-  render() {
-    const { email, name } = this.props;
+export default class Feedback extends Component {
+  render() {;
     return (
       <div className="CardFeedback">
-        <HeaderJogo email={email} name={name} />
+        <HeaderJogo />
         <div className="BodyFeedback">
           <p data-testid="feedback-text">Mensagem de feedback</p>
           <p data-testid="feedback-total-score">Full Score: 0</p>
@@ -30,15 +27,3 @@ class Feedback extends Component {
     );
   }
 }
-
-Feedback.protoTypes = {
-  name: PropTypes.string,
-  email: PropTypes.string,
-};
-
-const mapStateToProps = (state) => ({
-  email: state.players.email,
-  name: state.players.name,
-});
-
-export default connect(mapStateToProps)(Feedback);

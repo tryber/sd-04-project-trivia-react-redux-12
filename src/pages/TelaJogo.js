@@ -15,10 +15,9 @@ export class TelaJogo extends Component {
   }
 
   render() {
-    const { email, name } = this.props;
     return (
       <div className="Card">
-        <HeaderJogo email={email} name={name} />
+        <HeaderJogo />
         <Game />
         <Navigation />
       </div>
@@ -30,8 +29,6 @@ TelaJogo.propTypes = {
   token: PropTypes.string,
   getQuestions: PropTypes.func.isRequired,
   loadingToken: PropTypes.bool,
-  name: PropTypes.string,
-  email: PropTypes.string,
 };
 
 TelaJogo.defaultProps = {
@@ -42,8 +39,6 @@ TelaJogo.defaultProps = {
 const mapStateToProps = (state) => ({
   token: state.questions.token,
   loadingToken: state.questions.loadingToken,
-  email: state.players.email,
-  name: state.players.name,
 });
 
 export default connect(mapStateToProps, { getQuestions })(TelaJogo);

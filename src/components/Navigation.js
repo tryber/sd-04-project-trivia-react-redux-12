@@ -14,7 +14,7 @@ export class Navigation extends Component {
       counter, getNextQuestion, toggleAnswers, resetTimer, toggleTimer,
     } = this.props;
     return (
-      <>
+      <div>
         {counter === 4 ? (
           <Link to="/feedback" data-testid="btn-next">
               Feedback
@@ -27,7 +27,7 @@ export class Navigation extends Component {
             Confirmar
           </Button>
         )}
-      </>
+      </div>
     );
   }
 }
