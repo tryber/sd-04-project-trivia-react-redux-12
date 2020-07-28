@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Game from '../components/Game';
 import { getQuestions } from '../actions';
 
-class TelaJogo extends Component {
+export class TelaJogo extends Component {
   componentDidMount() {
     const { getQuestions, token, loadingToken } = this.props;
     if (!loadingToken) {
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
   loadingToken: state.questions.loadingToken,
 });
 
-export default connect(mapStateToProps)(TelaJogo);
+export default connect(mapStateToProps, { getQuestions })(TelaJogo);
