@@ -39,11 +39,11 @@ export class Game extends Component {
     const { timer } = this.state;
     switch (difficulty) {
       case 'hard':
-        return updateScore(score + 10 + timer * 3);
+        return updateScore((score + 10) + (timer * 3));
       case 'medium':
-        return updateScore(score + 10 + timer * 2);
+        return updateScore((score + 10) + (timer * 2));
       case 'easy':
-        return updateScore(score + 10 + timer * 1);
+        return updateScore((score + 10) + (timer * 1));
       default:
         return true;
     }

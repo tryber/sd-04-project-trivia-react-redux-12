@@ -16,27 +16,6 @@ export class TelaInicial extends Component {
     };
   }
 
-  returnInputs = (email, name) => (
-    <React.Fragment>
-      <TextField
-        data-testid="input-gravatar-email"
-        label="Email do Jogador"
-        onChange={(event) => this.setState({ email: event.target.value })}
-        size="small"
-        value={email}
-        variant="outlined"
-      />
-      <TextField
-        data-testid="input-player-name"
-        label="Nome do Jogador"
-        onChange={(event) => this.setState({ name: event.target.value })}
-        size="small"
-        value={name}
-        variant="outlined"
-      />
-    </React.Fragment>
-  )
-
   setLocalState = () => {
     const { setPlayer } = this.props;
     const { email, name } = this.state;
@@ -67,6 +46,27 @@ export class TelaInicial extends Component {
       })
       .then(() => history.push('/game'));
   };
+
+  returnInputs = (email, name) => (
+    <React.Fragment>
+      <TextField
+        data-testid="input-gravatar-email"
+        label="Email do Jogador"
+        onChange={(event) => this.setState({ email: event.target.value })}
+        size="small"
+        value={email}
+        variant="outlined"
+      />
+      <TextField
+        data-testid="input-player-name"
+        label="Nome do Jogador"
+        onChange={(event) => this.setState({ name: event.target.value })}
+        size="small"
+        value={name}
+        variant="outlined"
+      />
+    </React.Fragment>
+  )
 
   checkDisable = () => {
     const { email, name } = this.state;
