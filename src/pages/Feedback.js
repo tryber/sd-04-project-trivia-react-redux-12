@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import HeaderJogo from '../components/HeaderJogo';
 
 export default class Feedback extends Component {
-  render() {;
+  render() {
     return (
       <div className="CardFeedback">
         <HeaderJogo />
