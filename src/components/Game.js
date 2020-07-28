@@ -111,7 +111,7 @@ export class Game extends Component {
     } = this.props;
     const { timer } = this.state;
     return (
-      <React.Fragment>
+      <div>
         {counter === 4 ? (
           <Link to="/feedback">
             <button
@@ -119,7 +119,7 @@ export class Game extends Component {
               type="button"
               className={answerState || timer === 0 ? '' : 'hiddenBtn'}
             >
-            Feedback
+            Próxima
             </button>
           </Link>
         ) : (
@@ -131,10 +131,10 @@ export class Game extends Component {
             data-testid="btn-next"
             className={answerState || timer === 0 ? '' : 'hiddenBtn'}
           >
-            Proxima
+            Próxima
           </button>
         )}
-      </React.Fragment>
+      </div>
     );
   }
 
