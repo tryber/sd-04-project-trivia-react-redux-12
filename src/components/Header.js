@@ -22,9 +22,9 @@ export default class Header extends Component {
             Jogador:
                 {` ${currentState.player.name}`}
               </p>
-              <p data-testid="header-score">
+              <p>
             Pontuação:
-                {` ${currentState.player.score}`}
+                <span data-testid="header-score">{currentState.player.score}</span>
               </p>
             </div>
           </div>
