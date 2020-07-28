@@ -25,10 +25,12 @@ export class Game extends Component {
   }
 
   countDown = () => {
-    const { timer } = this.state;
     this.clock = setInterval(() => {
+      const { timer } = this.state;
       if (timer > 0) this.setState({ timer: timer - 1 });
-      else { alert('tempo acabou'); clearInterval(this.clock); }
+      else {
+        clearInterval(this.clock);
+      }
     }, 1000);
   }
 
@@ -51,18 +53,20 @@ export class Game extends Component {
     const {
       questions, toggleAnswers, answerState, counter,
     } = this.props;
+    const { timer } = this.state;
     const objQuestions = questions[counter];
     const arrayAnswers = objQuestions.incorrect_answers.map(
       (element, index) => (
         <button
           className={answerState ? 'wrong' : ''}
           data-testid={`wrong-answer-${index}`}
+          disabled={timer === 0}
           key={element}
-          type="button"
           onClick={() => {
             toggleAnswers();
             clearInterval(this.clock);
           }}
+          type="button"
         >
           {element}
         </button>
@@ -72,6 +76,7 @@ export class Game extends Component {
       <button
         className={answerState ? 'correct' : ''}
         data-testid="correct-answer"
+        disabled={timer === 0}
         onClick={() => {
           toggleAnswers();
           clearInterval(this.clock);
@@ -87,14 +92,16 @@ export class Game extends Component {
 
   renderNavigation = () => {
     const {
-      counter, getNextQuestion, toggleAnswers, answerState,
+      counter, getNextQuestion, answerState,
     } = this.props;
+    const { timer } = this.state;
     return (
       <>
         {counter === 4 ? (
           <Link to="/feedback" data-testid="btn-next">
             <button
               type="button"
+              className={answerState || timer === 0 ? '' : 'hiddenBtn'}
             >
             Feedback
             </button>
@@ -102,9 +109,11 @@ export class Game extends Component {
         ) : (
           <button
             type="button"
-            onClick={() => { toggleAnswers(); this.resetTimer(); getNextQuestion(); }}
+            onClick={() => {
+              this.resetTimer(); getNextQuestion(); this.countDown();
+            }}
             data-testid="btn-next"
-            className={answerState ? '' : 'hiddenBtn'}
+            className={answerState || timer === 0 ? '' : 'hiddenBtn'}
           >
             Confirmar
           </button>

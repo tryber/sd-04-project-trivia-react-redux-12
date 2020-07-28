@@ -19,6 +19,7 @@ const answers = (state = INITIAL_STATE, { type }) => {
       return {
         ...state,
         counter: state.counter + 1,
+        answerState: false,
       };
     default:
       return state;
