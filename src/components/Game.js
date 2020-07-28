@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
-  toggleAnswers, updateScore, getNextQuestion, tick, toggleTimer,
+  toggleAnswers, updateScore, getNextQuestion,
 } from '../actions';
 
 export class Game extends Component {
-  componentDidMount() {
-    const { toggleTimer } = this.props;
-    toggleTimer();
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: 30,
+    };
   }
 
-  componentDidUpdate(prevProps) {
-    const { timerRunning } = this.props;
-    if (prevProps.timerRunning !== timerRunning) {
-      this.countDown();
-    }
+  componentDidMount() {
+    this.countDown();
+  }
+
+  resetTimer = () => {
+    this.setState({
+      timer: 30,
+    });
   }
 
   countDown = () => {
-    const { timer, tick } = this.props;
+    const { timer } = this.state;
     this.clock = setInterval(() => {
-      if (timer > 0) tick();
-      else {
-        alert('Acabou seu tempo!');
-        clearInterval(this.clock);
-      }
+      if (timer > 0) this.setState({ timer: timer - 1 });
+      else { alert('tempo acabou'); clearInterval(this.clock); }
     }, 1000);
-  };
+  }
 
   calcScore = (difficulty) => {
-    const { score, updateScore, timer } = this.props;
+    const { score, updateScore } = this.props;
+    const { timer } = this.state;
     switch (difficulty) {
       case 'hard':
         return updateScore(score + 10 + timer * 3);
@@ -43,7 +47,7 @@ export class Game extends Component {
     }
   };
 
-  mapAnswers = () => {
+  renderAnswers = () => {
     const {
       questions, toggleAnswers, answerState, counter,
     } = this.props;
@@ -81,18 +85,51 @@ export class Game extends Component {
     return arrayAnswers;
   };
 
+  renderNavigation = () => {
+    const {
+      counter, getNextQuestion, toggleAnswers, answerState,
+    } = this.props;
+    return (
+      <>
+        {counter === 4 ? (
+          <Link to="/feedback" data-testid="btn-next">
+            <button
+              type="button"
+            >
+            Feedback
+            </button>
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={() => { toggleAnswers(); this.resetTimer(); getNextQuestion(); }}
+            data-testid="btn-next"
+            className={answerState ? '' : 'hiddenBtn'}
+          >
+            Confirmar
+          </button>
+        )}
+      </>
+    );
+  }
+
   render() {
     const {
-      loading, questions, error, counter, timer,
+      loading, questions, error, counter,
     } = this.props;
+    const { timer } = this.state;
     if (questions) {
       const currentQuestion = questions[counter];
       return (
         <div>
           <p data-testid="question-category">{currentQuestion.category}</p>
           <p data-testid="question-text">{currentQuestion.question}</p>
-          {this.mapAnswers()}
-          {timer}
+          <p>
+            Tempo Restante:
+            {timer}
+          </p>
+          {this.renderAnswers()}
+          {this.renderNavigation()}
         </div>
       );
     }
@@ -110,8 +147,6 @@ const mapStateToProps = (state) => ({
   loading: state.questions.loading,
   questions: state.questions.data.results,
   score: state.players.score,
-  timer: state.answers.timer,
-  timerRunning: state.answers.timerRunning,
 });
 
 Game.propTypes = {
@@ -121,14 +156,11 @@ Game.propTypes = {
   loading: PropTypes.bool,
   questions: PropTypes.shape,
   score: PropTypes.number,
-  tick: PropTypes.func.isRequired,
-  timer: PropTypes.number,
-  timerRunning: PropTypes.bool,
   toggleAnswers: PropTypes.func.isRequired,
-  toggleTimer: PropTypes.func.isRequired,
   updateScore: PropTypes.func.isRequired,
+  getNextQuestion: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, {
-  toggleAnswers, updateScore, getNextQuestion, tick, toggleTimer,
+  toggleAnswers, updateScore, getNextQuestion,
 })(Game);

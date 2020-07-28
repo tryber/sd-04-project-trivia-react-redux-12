@@ -10,9 +10,6 @@ export const SET_TOKEN = 'SET_TOKEN';
 // answers actions
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
 export const TOGGLE_ANSWERS = 'TOGGLE_ANSWERS';
-export const TOGGLE_TIMER = 'TOGGLE_TIMER';
-export const RESET_TIMER = 'RESET_TIMER';
-export const TICK = 'TICK';
 
 // players actionCreators
 export const setPlayer = (email, name) => ({
@@ -53,18 +50,6 @@ export const getNextQuestion = () => ({
 
 export const toggleAnswers = () => ({
   type: TOGGLE_ANSWERS,
-});
-
-export const toggleTimer = () => ({
-  type: TOGGLE_TIMER,
-});
-
-export const resetTimer = () => ({
-  type: RESET_TIMER,
-});
-
-export const tick = () => ({
-  type: TICK,
 });
 
 // API dispatch

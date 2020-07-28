@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Game from '../components/Game';
-import Navigation from '../components/Navigation';
 import { getQuestions } from '../actions';
 
 export class TelaJogo extends Component {
@@ -19,7 +18,6 @@ export class TelaJogo extends Component {
       <div className="Card">
         <Header />
         <Game />
-        <Navigation />
       </div>
     );
   }
