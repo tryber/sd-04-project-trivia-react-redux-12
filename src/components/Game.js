@@ -20,16 +20,6 @@ export class Game extends Component {
     this.countDown();
   }
 
-  countDown = () => {
-    this.clock = setInterval(() => {
-      const { timer } = this.state;
-      if (timer > 0) this.setState({ timer: timer - 1 });
-      else {
-        clearInterval(this.clock);
-      }
-    }, 1000);
-  }
-
   calcScore = (difficulty) => {
     const { score, timer } = this.state;
     switch (difficulty) {
@@ -74,6 +64,16 @@ export class Game extends Component {
       currentRanking.push(rankingItem);
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
     }
+  }
+
+  countDown = () => {
+    this.clock = setInterval(() => {
+      const { timer } = this.state;
+      if (timer > 0) this.setState({ timer: timer - 1 });
+      else {
+        clearInterval(this.clock);
+      }
+    }, 1000);
   }
 
   resetTimer = () => {
