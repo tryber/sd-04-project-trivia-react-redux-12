@@ -1,7 +1,5 @@
 import { apiQuestions } from '../service';
-// players actions
-export const SET_PLAYER = 'SET_PLAYER';
-export const UPDATE_SCORE = 'UPDATE_SCORE';
+
 // questions actions
 export const GET_QUESTIONS_REQUEST = 'GET_QUESTIONS_REQUEST';
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
@@ -11,19 +9,7 @@ export const SET_TOKEN = 'SET_TOKEN';
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
 export const TOGGLE_ANSWERS = 'TOGGLE_ANSWERS';
 
-// players actionCreators
-export const setPlayer = (email, name) => ({
-  type: SET_PLAYER,
-  email,
-  name,
-});
-
-export const updateScore = (score, assertions) => ({
-  type: UPDATE_SCORE,
-  score,
-  assertions,
-});
-
+// questions actionCreators
 export const getQuestionsRequest = () => ({
   type: GET_QUESTIONS_REQUEST,
 });

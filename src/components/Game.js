@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  toggleAnswers, updateScore, getNextQuestion,
+  toggleAnswers, getNextQuestion,
 } from '../actions';
 
 export class Game extends Component {
@@ -11,6 +11,8 @@ export class Game extends Component {
     super(props);
     this.state = {
       timer: 30,
+      score: 0,
+      assertions: 0,
     };
   }
 
@@ -35,19 +37,32 @@ export class Game extends Component {
   }
 
   calcScore = (difficulty) => {
-    const { score, updateScore } = this.props;
-    const { timer } = this.state;
+    const { score, timer } = this.state;
     switch (difficulty) {
       case 'hard':
-        return updateScore((score + 10) + (timer * 3));
+        return ((score + 10) + (timer * 3));
       case 'medium':
-        return updateScore((score + 10) + (timer * 2));
+        return ((score + 10) + (timer * 2));
       case 'easy':
-        return updateScore((score + 10) + (timer * 1));
+        return ((score + 10) + (timer * 1));
       default:
         return true;
     }
   };
+
+  updateLocalState = (difficulty) => {
+    const currentState = JSON.parse(localStorage.getItem('state'));
+    console.log(currentState);
+    const newScore = this.calcScore(difficulty);
+    console.log(newScore);
+    const newState = {
+      ...currentState,
+      assertions: currentState.assertions + 1,
+      score: currentState.score + newScore,
+    };
+    localStorage.setItem('state', JSON.stringify(newState));
+    this.setState({ score: newState.score, assertions: newState.assertions });
+  }
 
   renderAnswers = () => {
     const {
@@ -80,7 +95,7 @@ export class Game extends Component {
         onClick={() => {
           toggleAnswers();
           clearInterval(this.clock);
-          this.calcScore(objQuestions.difficulty);
+          this.updateLocalState(objQuestions.difficulty);
         }}
         type="button"
       >
@@ -98,8 +113,9 @@ export class Game extends Component {
     return (
       <React.Fragment>
         {counter === 4 ? (
-          <Link to="/feedback" data-testid="btn-next">
+          <Link to="/feedback">
             <button
+              data-testid="btn-next"
               type="button"
               className={answerState || timer === 0 ? '' : 'hiddenBtn'}
             >
@@ -115,7 +131,7 @@ export class Game extends Component {
             data-testid="btn-next"
             className={answerState || timer === 0 ? '' : 'hiddenBtn'}
           >
-            Confirmar
+            Proxima
           </button>
         )}
       </React.Fragment>
@@ -155,21 +171,20 @@ const mapStateToProps = (state) => ({
   error: state.questions.error,
   loading: state.questions.loading,
   questions: state.questions.data.results,
-  score: state.players.score,
 });
 
 Game.propTypes = {
   answerState: PropTypes.bool,
   counter: PropTypes.number,
-  error: PropTypes.shape,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
   loading: PropTypes.bool,
-  questions: PropTypes.shape,
-  score: PropTypes.number,
+  questions: PropTypes.shape([]),
   toggleAnswers: PropTypes.func.isRequired,
-  updateScore: PropTypes.func.isRequired,
   getNextQuestion: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, {
-  toggleAnswers, updateScore, getNextQuestion,
+  toggleAnswers, getNextQuestion,
 })(Game);

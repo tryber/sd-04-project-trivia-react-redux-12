@@ -4,7 +4,7 @@ import { TextField, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { Link } from 'react-router-dom';
-import { setPlayer, setToken } from '../actions';
+import { setToken } from '../actions';
 import { apiToken } from '../service';
 
 export class TelaInicial extends Component {
@@ -17,15 +17,12 @@ export class TelaInicial extends Component {
   }
 
   setLocalState = () => {
-    const { setPlayer } = this.props;
     const { email, name } = this.state;
-    setPlayer(email, name);
     let currentRanking = localStorage.getItem('ranking');
     if (!currentRanking) {
       const ranking = JSON.stringify([{ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` }]);
       localStorage.setItem('ranking', ranking);
     } else {
-      console.log('ok');
       currentRanking = JSON.parse(currentRanking);
       currentRanking.push({ name, score: 0, picture: `https://www.gravatar.com/avatar/${md5(email).toString()}` });
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
@@ -106,11 +103,10 @@ export class TelaInicial extends Component {
 }
 
 TelaInicial.propTypes = {
-  setPlayer: PropTypes.func.isRequired,
   setToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
 };
 
-export default connect(null, { setPlayer, setToken })(TelaInicial);
+export default connect(null, { setToken })(TelaInicial);
