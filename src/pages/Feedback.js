@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import HeaderJogo from '../components/HeaderJogo';
+import { connect } from 'react-redux';
 
-export default class Feedback extends Component {
+class Feedback extends Component {
   render() {
+    const { email, name } = this.props;
     return (
       <div className="CardFeedback">
-        <HeaderJogo />
+        <HeaderJogo email={email} name={name} />
         <div className="BodyFeedback">
           <p data-testid="feedback-text">Mensagem de feedback</p>
           <p data-testid="feedback-total-score">Full Score: 0</p>
@@ -27,3 +29,10 @@ export default class Feedback extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  email: state.players.email,
+  name: state.players.name,
+});
+
+export default connect(mapStateToProps)(Feedback);

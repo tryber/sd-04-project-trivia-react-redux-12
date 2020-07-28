@@ -19,20 +19,14 @@ export class TelaInicial extends Component {
   returnInputs = (email, name) => (
     <>
       <TextField
-        data-testid="input-gravatar-email"
-        label="Email do Jogador"
-        onChange={(event) => this.setState({ email: event.target.value })}
-        size="small"
-        value={email}
-        variant="outlined"
+        data-testid="input-gravatar-email" label="Email do Jogador"
+        onChange={(event) => this.setState({ email: event.target.value })} size="small"
+        value={email} variant="outlined"
       />
       <TextField
-        data-testid="input-player-name"
-        label="Nome do Jogador"
-        onChange={(event) => this.setState({ name: event.target.value })}
-        size="small"
-        value={name}
-        variant="outlined"
+        data-testid="input-player-name" label="Nome do Jogador"
+        onChange={(event) => this.setState({ name: event.target.value })} size="small"
+        value={name} variant="outlined"
       />
     </>
   )
@@ -82,20 +76,13 @@ export class TelaInicial extends Component {
           {this.returnInputs(email, name)}
           <br />
           <Button
-            variant="contained"
-            data-testid="btn-play"
-            disabled={this.checkDisable()}
-            onClick={() => this.setTokenAndRoute()}
-            type="button"
+            variant="contained" data-testid="btn-play" disabled={this.checkDisable()}
+            onClick={() => this.setTokenAndRoute()} type="button"
           >
-              Jogar
+            Jogar
           </Button>
           <Link to="/config">
-            <Button
-              variant="contained"
-              data-testid="btn-settings"
-              type="button"
-            >
+            <Button variant="contained" data-testid="btn-settings" type="button">
               Configurações
             </Button>
           </Link>
