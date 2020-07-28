@@ -20,12 +20,6 @@ export class Game extends Component {
     this.countDown();
   }
 
-  resetTimer = () => {
-    this.setState({
-      timer: 30,
-    });
-  }
-
   countDown = () => {
     this.clock = setInterval(() => {
       const { timer } = this.state;
@@ -67,22 +61,25 @@ export class Game extends Component {
   setRanking = () => {
     const currentState = JSON.parse(localStorage.getItem('state'));
     let currentRanking = localStorage.getItem('ranking');
+    const rankingItem = {
+      name: currentState.player.name,
+      score: currentState.player.score,
+      picture: `https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`,
+    };
     if (!currentRanking) {
-      const ranking = JSON.stringify([{
-        name: currentState.player.name,
-        score: currentState.player.score,
-        picture: `https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`,
-      }]);
+      const ranking = JSON.stringify([rankingItem]);
       localStorage.setItem('ranking', ranking);
     } else {
       currentRanking = JSON.parse(currentRanking);
-      currentRanking.push({
-        name: currentState.player.name,
-        score: currentState.player.score,
-        picture: `https://www.gravatar.com/avatar/${md5(currentState.player.email).toString()}`,
-      });
+      currentRanking.push(rankingItem);
       localStorage.setItem('ranking', JSON.stringify(currentRanking));
     }
+  }
+
+  resetTimer = () => {
+    this.setState({
+      timer: 30,
+    });
   }
 
   renderAnswers = () => {
