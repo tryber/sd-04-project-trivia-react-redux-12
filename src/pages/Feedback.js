@@ -7,8 +7,7 @@ import HeaderJogo from '../components/HeaderJogo';
 
 class Feedback extends Component {
   render() {
-    const { player } = this.props;
-    const { assertions, score } = player;
+    const { assertions, score } = this.props;
     return (
       <div className="CardFeedback">
         <HeaderJogo />
