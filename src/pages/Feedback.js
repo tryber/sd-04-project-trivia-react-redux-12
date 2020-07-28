@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
-import HeaderJogo from '../components/HeaderJogo';
+import PropTypes from 'prop-types';
+import Header from '../components/HeaderJogo';
 
-class Feedback extends Component {
+export class Feedback extends Component {
   render() {
-    const { player } = this.props;
-    const { assertions, score } = player;
+    const { score, assertions } = this.props;
     return (
       <div className="CardFeedback">
-        <HeaderJogo />
+        <Header />
         <div className="BodyFeedback">
-          <p data-testid="feedback-text">
-            {(assertions >= 3
-              ? 'mandou bem!' : 'Podia ser melhor..')}
+          <p data-testid="feedback-text">{assertions < 3 ? 'Podia ser melhor...' : 'Mandou bem!'}</p>
+          <p data-testid="feedback-total-score">
+          Pontuação Final:
+            {score}
           </p>
-          <p data-testid="feedback-total-score"> Full Score: {score} </p>
-          <p data-testid="feedback-total-question"> Hits: {assertions} </p>
+          <p data-testid="feedback-total-question">
+          Número de acertos:
+            {assertions}
+          </p>
         </div>
         <div className="FooterFeedback">
           <Link to="/">
@@ -35,16 +37,14 @@ class Feedback extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  score: state.players.score,
-  player: state.players,
-});
-
 Feedback.propTypes = {
-  player: PropTypes.shape({
-    assertions: PropTypes.number,
-    score: PropTypes.number,
-  }).isRequired,
+  score: PropTypes.number,
+  assertions: PropTypes.number,
 };
 
-export default connect(mapStateToProps)(Feedback);
+const mapsStateToProps = (state) => ({
+  score: state.players.score,
+  assertions: state.players.assertions,
+});
+
+export default connect(mapsStateToProps)(Feedback);
