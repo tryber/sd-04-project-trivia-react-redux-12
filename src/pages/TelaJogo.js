@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import HeaderJogo from '../components/HeaderJogo';
 import Game from '../components/Game';
 import { getQuestions } from '../actions';
 
@@ -16,7 +16,7 @@ export class TelaJogo extends Component {
   render() {
     return (
       <div className="Card">
-        <Header />
+        <HeaderJogo />
         <Game />
       </div>
     );

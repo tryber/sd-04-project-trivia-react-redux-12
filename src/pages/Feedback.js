@@ -3,14 +3,14 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import HeaderJogo from '../components/HeaderJogo';
 
 export class Feedback extends Component {
   render() {
     const { score, assertions } = this.props;
     return (
       <div className="CardFeedback">
-        <Header />
+        <HeaderJogo />
         <div className="BodyFeedback">
           <p data-testid="feedback-text">{assertions < 3 ? 'Podia ser melhor...' : 'Mandou bem!'}</p>
           <p data-testid="feedback-total-score">
