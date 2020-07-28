@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import HeaderJogo from '../components/HeaderJogo';
+import Header from '../components/Header';
 import Game from '../components/Game';
-import Navigation from '../components/Navigation';
 import { getQuestions } from '../actions';
 
-export class TelaJogo extends Component {
+class TelaJogo extends Component {
   componentDidMount() {
     const { getQuestions, token, loadingToken } = this.props;
     if (!loadingToken) {
@@ -17,9 +16,8 @@ export class TelaJogo extends Component {
   render() {
     return (
       <div className="Card">
-        <HeaderJogo />
+        <Header />
         <Game />
-        <Navigation />
       </div>
     );
   }
@@ -41,4 +39,4 @@ const mapStateToProps = (state) => ({
   loadingToken: state.questions.loadingToken,
 });
 
-export default connect(mapStateToProps, { getQuestions })(TelaJogo);
+export default connect(mapStateToProps)(TelaJogo);
