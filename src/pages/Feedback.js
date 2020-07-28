@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import HeaderJogo from '../components/HeaderJogo';
-import { connect } from 'react-redux';
 
 class Feedback extends Component {
   render() {
@@ -29,6 +30,11 @@ class Feedback extends Component {
     );
   }
 }
+
+Feedback.protoTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+};
 
 const mapStateToProps = (state) => ({
   email: state.players.email,

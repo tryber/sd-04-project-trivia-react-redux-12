@@ -17,7 +17,7 @@ export class TelaInicial extends Component {
   }
 
   returnInputs = (email, name) => (
-    <>
+    <div>
       <TextField
         data-testid="input-gravatar-email" label="Email do Jogador"
         onChange={(event) => this.setState({ email: event.target.value })} size="small"
@@ -28,7 +28,7 @@ export class TelaInicial extends Component {
         onChange={(event) => this.setState({ name: event.target.value })} size="small"
         value={name} variant="outlined"
       />
-    </>
+    </div>
   )
 
   setLocalState = () => {
